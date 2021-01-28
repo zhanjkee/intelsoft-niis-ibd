@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.Entities", "src\Intelsoft.Niis.Ibd.Entities\Intelsoft.Niis.Ibd.Entities.csproj", "{A316BE56-BCF8-40A7-BCFB-45241741D972}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.DataAccess.Interfaces", "src\Intelsoft.Niis.Ibd.DataAccess.Interfaces\Intelsoft.Niis.Ibd.DataAccess.Interfaces.csproj", "{CEF730D7-DAB7-41C6-857D-656613AF6B94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.DataAccess", "src\Intelsoft.Niis.Ibd.DataAccess\Intelsoft.Niis.Ibd.DataAccess.csproj", "{9D4B4514-968B-4F8A-83C8-DD964903EBFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.DataAccess.Autofac", "src\Intelsoft.Niis.Ibd.DataAccess.Autofac\Intelsoft.Niis.Ibd.DataAccess.Autofac.csproj", "{8F8F8AD5-1211-4D63-978B-E0DF8D0B3388}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.Options", "src\Intelsoft.Niis.Ibd.Options\Intelsoft.Niis.Ibd.Options.csproj", "{51D2BB84-34F2-4797-A13C-3DCD1C3E3420}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessModule", "DataAccessModule", "{D8AFD805-B98E-4EFD-A733-FD36B15204BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A316BE56-BCF8-40A7-BCFB-45241741D972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A316BE56-BCF8-40A7-BCFB-45241741D972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A316BE56-BCF8-40A7-BCFB-45241741D972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A316BE56-BCF8-40A7-BCFB-45241741D972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEF730D7-DAB7-41C6-857D-656613AF6B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEF730D7-DAB7-41C6-857D-656613AF6B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEF730D7-DAB7-41C6-857D-656613AF6B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEF730D7-DAB7-41C6-857D-656613AF6B94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D4B4514-968B-4F8A-83C8-DD964903EBFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D4B4514-968B-4F8A-83C8-DD964903EBFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D4B4514-968B-4F8A-83C8-DD964903EBFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D4B4514-968B-4F8A-83C8-DD964903EBFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F8F8AD5-1211-4D63-978B-E0DF8D0B3388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F8F8AD5-1211-4D63-978B-E0DF8D0B3388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F8F8AD5-1211-4D63-978B-E0DF8D0B3388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F8F8AD5-1211-4D63-978B-E0DF8D0B3388}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51D2BB84-34F2-4797-A13C-3DCD1C3E3420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D2BB84-34F2-4797-A13C-3DCD1C3E3420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D2BB84-34F2-4797-A13C-3DCD1C3E3420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D2BB84-34F2-4797-A13C-3DCD1C3E3420}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A316BE56-BCF8-40A7-BCFB-45241741D972} = {D8AFD805-B98E-4EFD-A733-FD36B15204BB}
+		{CEF730D7-DAB7-41C6-857D-656613AF6B94} = {D8AFD805-B98E-4EFD-A733-FD36B15204BB}
+		{9D4B4514-968B-4F8A-83C8-DD964903EBFB} = {D8AFD805-B98E-4EFD-A733-FD36B15204BB}
+		{8F8F8AD5-1211-4D63-978B-E0DF8D0B3388} = {D8AFD805-B98E-4EFD-A733-FD36B15204BB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A081338C-ED29-41A4-8124-B361FFFDFC4C}
+	EndGlobalSection
+EndGlobal
