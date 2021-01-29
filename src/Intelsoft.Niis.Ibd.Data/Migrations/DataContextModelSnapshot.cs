@@ -243,8 +243,11 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                     b.Property<string>("CorrelationId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Direction")
-                        .HasColumnType("int");
+                    b.Property<string>("From")
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<string>("To")
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<DateTime?>("MessageDate")
                         .HasColumnType("datetime2");
@@ -252,11 +255,11 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                     b.Property<string>("MessageId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Method")
-                        .HasColumnType("int");
+                    b.Property<string>("Method")
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("RawData")
-                        .HasColumnType("xml");
+                        .HasColumnType("XML");
 
                     b.Property<DateTime>("RowCreatedDate")
                         .HasColumnType("datetime2");

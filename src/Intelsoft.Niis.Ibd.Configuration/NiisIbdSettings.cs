@@ -10,7 +10,6 @@ namespace Intelsoft.Niis.Ibd.Configuration
         public const string SectionName = "niisIbdSettings";
 
         public const string ConnectionStringKey = "connectionString";
-        public const string ReceiveResponseWebAddressKey = "receiveResponseWebAddress";
         public const string ShepWebAddressKey = "shepWebAddress";
         public const string LogPathKey = "logPath";
         public const string FileSizeLimitMBytesKey = "fileSizeLimitMBytes";
@@ -18,41 +17,13 @@ namespace Intelsoft.Niis.Ibd.Configuration
         /// <summary>
         ///     Connection string к базе данных SqlServer.
         /// </summary>
-        [
-            ConfigurationProperty(ConnectionStringKey,
+        [ConfigurationProperty(ConnectionStringKey,
                 DefaultValue = "Server=(local);Database=niis_ibd;Trusted_Connection=True;",
-                IsRequired = true),
-            //CheckSqlConnecion
-        ]
+                IsRequired = true)]
         public string ConnectionString
         {
-            get
-            {
-                return this[ConnectionStringKey].ToString();
-            }
-            set
-            {
-                this[ConnectionStringKey] = value;
-            }
-        }
-
-        /// <summary>
-        ///     Адрес WCF сервиса.
-        ///     Сервис на стороне НИИС, который принимает статусы от ИБД.
-        /// </summary>
-        [ConfigurationProperty(ReceiveResponseWebAddressKey,
-            DefaultValue = "http://localhost:5005/Services/SendMessageResponse.svc",
-            IsRequired = true)]
-        public string ReceiveResponseWebAddress
-        {
-            get
-            {
-                return this[ReceiveResponseWebAddressKey].ToString();
-            }
-            set
-            {
-                this[ReceiveResponseWebAddressKey] = value;
-            }
+            get => this[ConnectionStringKey].ToString();
+            set => this[ConnectionStringKey] = value;
         }
 
         /// <summary>
@@ -63,14 +34,8 @@ namespace Intelsoft.Niis.Ibd.Configuration
             IsRequired = true)]
         public string ShepWebAddress
         {
-            get
-            {
-                return this[ShepWebAddressKey].ToString();
-            }
-            set
-            {
-                this[ShepWebAddressKey] = value;
-            }
+            get => this[ShepWebAddressKey].ToString();
+            set => this[ShepWebAddressKey] = value;
         }
 
         /// <summary>
@@ -79,14 +44,8 @@ namespace Intelsoft.Niis.Ibd.Configuration
         [ConfigurationProperty(LogPathKey, DefaultValue = "..\\logs", IsRequired = true)]
         public string LogPath
         {
-            get
-            {
-                return this[LogPathKey].ToString();
-            }
-            set
-            {
-                this[LogPathKey] = value;
-            }
+            get => this[LogPathKey].ToString();
+            set => this[LogPathKey] = value;
         }
         
         /// <summary>
@@ -96,14 +55,8 @@ namespace Intelsoft.Niis.Ibd.Configuration
         [ConfigurationProperty(FileSizeLimitMBytesKey, DefaultValue = 1024, IsRequired = true)]
         public int FileSizeLimitMBytes
         {
-            get
-            {
-                return (int)this[FileSizeLimitMBytesKey];
-            }
-            set
-            {
-                this[FileSizeLimitMBytesKey] = value;
-            }
+            get => (int)this[FileSizeLimitMBytesKey];
+            set => this[FileSizeLimitMBytesKey] = value;
         }
     }
 }

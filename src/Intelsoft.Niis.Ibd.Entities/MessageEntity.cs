@@ -8,6 +8,29 @@ namespace Intelsoft.Niis.Ibd.Entities
 {
     public class MessageEntity : EntityBase
     {
+        protected MessageEntity()
+        {
+
+        }
+
+        public MessageEntity(
+            string messageId,
+            DateTime? messageDate,
+            string correlationId,
+            Method method,
+            Direction from,
+            Direction to,
+            string rawData)
+        {
+            MessageId = messageId;
+            MessageDate = messageDate;
+            CorrelationId = correlationId;
+            Method = method;
+            From = from;
+            To = to;
+            RawData = rawData;
+        }
+
         /// <summary>
         ///     Идентификатор сообщения.
         /// </summary>
@@ -31,7 +54,12 @@ namespace Intelsoft.Niis.Ibd.Entities
         /// <summary>
         ///     Направление. Niis | Ibd.
         /// </summary>
-        public Direction Direction { get; set; }
+        public Direction From { get; set; }
+
+        /// <summary>
+        ///     Направление. Niis | Ibd.
+        /// </summary>
+        public Direction To { get; set; }
 
         /// <summary>
         ///     Сообщение xml в сыром виде.
@@ -40,5 +68,15 @@ namespace Intelsoft.Niis.Ibd.Entities
 
         public ICollection<ContractRequestMessageMapEntity> ContractRequests { get; set; }
         public ICollection<IbdResponseMessageMapEntity> IbdResponses { get; set; }
+
+        public void AddIdbResponses(params IbdResponseEntity[] ibdResponses)
+        {
+            if (IbdResponses == null) IbdResponses = new List<IbdResponseMessageMapEntity>(ibdResponses.Length);
+
+            foreach (var ibdResponse in ibdResponses)
+            {
+                IbdResponses.Add(new IbdResponseMessageMapEntity(ibdResponse, this));
+            }
+        }
     }
 }

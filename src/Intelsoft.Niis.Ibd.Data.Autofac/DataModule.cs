@@ -3,6 +3,7 @@ using System.Reflection;
 using Autofac;
 using Intelsoft.Niis.Ibd.Configuration;
 using Intelsoft.Niis.Ibd.Data.Interfaces;
+using Intelsoft.Niis.Ibd.Data.Repositories;
 using Intelsoft.Niis.Ibd.Data.UoW;
 using Microsoft.EntityFrameworkCore;
 using AutofacModule = Autofac.Module;
@@ -36,6 +37,12 @@ namespace Intelsoft.Niis.Ibd.Data.Autofac
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<MessageRepository>().As<IMessageRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<ContractRepository>().As<IContractRepository>()
                 .InstancePerLifetimeScope();
         }
     }

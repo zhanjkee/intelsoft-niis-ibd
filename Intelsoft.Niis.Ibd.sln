@@ -17,9 +17,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4E5F6A76
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.Data.Tests", "tests\Intelsoft.Niis.Ibd.Data.Tests\Intelsoft.Niis.Ibd.Data.Tests.csproj", "{984B1FF4-E5B6-439A-9ED1-B108E12216FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.Configuration", "src\Intelsoft.Niis.Ibd.Configuration\Intelsoft.Niis.Ibd.Configuration.csproj", "{FB2C0826-908E-4DA5-94D1-9C4D2D247724}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.Configuration", "src\Intelsoft.Niis.Ibd.Configuration\Intelsoft.Niis.Ibd.Configuration.csproj", "{FB2C0826-908E-4DA5-94D1-9C4D2D247724}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.Configuration.Tests", "tests\Intelsoft.Niis.Ibd.Configuration.Tests\Intelsoft.Niis.Ibd.Configuration.Tests.csproj", "{19B5CECA-AD10-45B2-8587-E2C2D5F7F3EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.Contract", "src\Intelsoft.Niis.Ibd.ReceiveStatusService.Contract\Intelsoft.Niis.Ibd.ReceiveStatusService.Contract.csproj", "{E527723B-851D-4E6B-B8C2-A36E961D02D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation", "src\Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation\Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation.csproj", "{289AAFA8-7919-4532-8118-B488AC23D41D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.WebHost", "src\Intelsoft.Niis.Ibd.ReceiveStatusService.WebHost\Intelsoft.Niis.Ibd.ReceiveStatusService.WebHost.csproj", "{3B4AA392-279A-4CF6-B89D-0AA5CA61632E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.Shared", "src\Intelsoft.Niis.Ibd.Shared\Intelsoft.Niis.Ibd.Shared.csproj", "{3E6FCDF7-B8E6-47E2-A304-1972623E1F5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.Data.Tools", "src\Intelsoft.Niis.Ibd.Data.Tools\Intelsoft.Niis.Ibd.Data.Tools.csproj", "{1FB538DF-1CD0-4BFB-9FD5-9BAA04171D3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac", "src\Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac\Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac.csproj", "{A5D4B6A5-48C0-4928-B372-817F15A4645F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +67,30 @@ Global
 		{19B5CECA-AD10-45B2-8587-E2C2D5F7F3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19B5CECA-AD10-45B2-8587-E2C2D5F7F3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19B5CECA-AD10-45B2-8587-E2C2D5F7F3EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E527723B-851D-4E6B-B8C2-A36E961D02D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E527723B-851D-4E6B-B8C2-A36E961D02D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E527723B-851D-4E6B-B8C2-A36E961D02D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E527723B-851D-4E6B-B8C2-A36E961D02D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{289AAFA8-7919-4532-8118-B488AC23D41D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289AAFA8-7919-4532-8118-B488AC23D41D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289AAFA8-7919-4532-8118-B488AC23D41D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289AAFA8-7919-4532-8118-B488AC23D41D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B4AA392-279A-4CF6-B89D-0AA5CA61632E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B4AA392-279A-4CF6-B89D-0AA5CA61632E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B4AA392-279A-4CF6-B89D-0AA5CA61632E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B4AA392-279A-4CF6-B89D-0AA5CA61632E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E6FCDF7-B8E6-47E2-A304-1972623E1F5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E6FCDF7-B8E6-47E2-A304-1972623E1F5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E6FCDF7-B8E6-47E2-A304-1972623E1F5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E6FCDF7-B8E6-47E2-A304-1972623E1F5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FB538DF-1CD0-4BFB-9FD5-9BAA04171D3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FB538DF-1CD0-4BFB-9FD5-9BAA04171D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FB538DF-1CD0-4BFB-9FD5-9BAA04171D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FB538DF-1CD0-4BFB-9FD5-9BAA04171D3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5D4B6A5-48C0-4928-B372-817F15A4645F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5D4B6A5-48C0-4928-B372-817F15A4645F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5D4B6A5-48C0-4928-B372-817F15A4645F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5D4B6A5-48C0-4928-B372-817F15A4645F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +102,7 @@ Global
 		{8F8F8AD5-1211-4D63-978B-E0DF8D0B3388} = {D8AFD805-B98E-4EFD-A733-FD36B15204BB}
 		{984B1FF4-E5B6-439A-9ED1-B108E12216FB} = {4E5F6A76-596F-4E2A-BF1D-10E90029FF87}
 		{19B5CECA-AD10-45B2-8587-E2C2D5F7F3EE} = {4E5F6A76-596F-4E2A-BF1D-10E90029FF87}
+		{1FB538DF-1CD0-4BFB-9FD5-9BAA04171D3A} = {D8AFD805-B98E-4EFD-A733-FD36B15204BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A081338C-ED29-41A4-8124-B361FFFDFC4C}

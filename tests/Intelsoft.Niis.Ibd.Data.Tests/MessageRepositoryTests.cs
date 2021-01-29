@@ -1,11 +1,9 @@
 using System;
-using System.Diagnostics;
 using System.Linq;
 using Intelsoft.Niis.Ibd.Data.Interfaces;
 using Intelsoft.Niis.Ibd.Data.UoW;
 using Intelsoft.Niis.Ibd.Entities;
 using Intelsoft.Niis.Ibd.Entities.Enums;
-using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace Intelsoft.Niis.Ibd.Data.Tests
@@ -21,19 +19,26 @@ namespace Intelsoft.Niis.Ibd.Data.Tests
         [Fact]
         public void AddMessageTests()
         {
-            _unitOfWork.MessageRepository.Add(new MessageEntity
-            {
-                CorrelationId = Guid.NewGuid().ToString(),
-                Direction = Direction.Niis,
-                Method = Method.Request,
-                MessageId = Guid.NewGuid().ToString(),
-                RawData = string.Empty,
-                MessageDate = DateTime.Now
-            });
+            // Arrange.
+            var messageId = Guid.NewGuid().ToString();
+            var messageDate = DateTime.Now;
+            var correlationId = Guid.NewGuid().ToString();
+
+            // Act.
+            _unitOfWork.MessageRepository.Add(new MessageEntity(
+                messageId,
+                messageDate,
+                correlationId,
+                Method.Request,
+                Direction.Ibd,
+                Direction.Niis,
+                string.Empty
+            ));
             _unitOfWork.SaveChanges();
 
             var messages = _unitOfWork.MessageRepository.GetAll().ToList();
 
+            // Assert.
             Assert.True(messages.Count > 0);
         }
     }

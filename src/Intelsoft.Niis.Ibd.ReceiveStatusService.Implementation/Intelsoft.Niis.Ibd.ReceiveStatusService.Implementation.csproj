@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Data.Interfaces\Intelsoft.Niis.Ibd.Data.Interfaces.csproj" />
+		<ProjectReference Include="..\Intelsoft.Niis.Ibd.ReceiveStatusService.Contract\Intelsoft.Niis.Ibd.ReceiveStatusService.Contract.csproj" />
+		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Shared\Intelsoft.Niis.Ibd.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="System.ServiceModel">
+			<HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.ServiceModel.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>

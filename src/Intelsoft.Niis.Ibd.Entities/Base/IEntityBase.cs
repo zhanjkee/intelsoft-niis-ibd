@@ -2,9 +2,14 @@
 
 namespace Intelsoft.Niis.Ibd.Entities.Base
 {
-    public class EntityBase
+    public interface IEntityBase<TKey> where TKey : IEquatable<TKey>
     {
-        public EntityBase()
+        TKey Id { get; set; }
+    }
+
+    public abstract class EntityBase : IEntityBase<int>
+    {
+        protected EntityBase()
         {
             RowCreatedDate = DateTime.Now;
         }

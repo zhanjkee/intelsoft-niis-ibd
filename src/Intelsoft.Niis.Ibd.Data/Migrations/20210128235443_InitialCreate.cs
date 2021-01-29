@@ -51,8 +51,9 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                     MessageId = table.Column<string>(nullable: true),
                     MessageDate = table.Column<DateTime>(nullable: true),
                     CorrelationId = table.Column<string>(nullable: true),
-                    Method = table.Column<int>(nullable: false),
-                    Direction = table.Column<int>(nullable: false),
+                    Method = table.Column<string>(nullable: false),
+                    From = table.Column<string>(nullable: false),
+                    To = table.Column<string>(nullable: false),
                     RawData = table.Column<string>(nullable: true),
                     RowCreatedDate = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true)

@@ -7,6 +7,25 @@ namespace Intelsoft.Niis.Ibd.Entities
 {
     public class IbdResponseEntity : EntityBase
     {
+        protected IbdResponseEntity()
+        {
+
+        }
+
+        public IbdResponseEntity(
+            string responseId, 
+            DateTime? responseDate, 
+            string errorCode, 
+            string dataProcessingText, 
+            string requestId)
+        {
+            ResponseId = responseId;
+            ResponseDate = responseDate;
+            ErrorCode = errorCode;
+            DataProcessingText = dataProcessingText;
+            RequestId = requestId;
+        }
+
         public string ResponseId { get; set; }
         public DateTime? ResponseDate { get; set; }
         public string ErrorCode { get; set; }
