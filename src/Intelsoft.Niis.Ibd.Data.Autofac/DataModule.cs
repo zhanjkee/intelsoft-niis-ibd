@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
 using Autofac;
+using Intelsoft.Niis.Ibd.Configuration;
 using Intelsoft.Niis.Ibd.Data.Interfaces;
 using Intelsoft.Niis.Ibd.Data.UoW;
-using Intelsoft.Niis.Ibd.Options;
 using Microsoft.EntityFrameworkCore;
 using AutofacModule = Autofac.Module;
 
@@ -15,7 +15,7 @@ namespace Intelsoft.Niis.Ibd.Data.Autofac
         {
             builder.Register(x =>
             {
-                var configuration = x.Resolve<NiisIbdOptions>();
+                var configuration = NiisIbdSettingsReader.Read();
 
                 var dbContextOptionsBuilder = new DbContextOptionsBuilder<DataContext>()
                     .UseSqlServer(configuration.ConnectionString,

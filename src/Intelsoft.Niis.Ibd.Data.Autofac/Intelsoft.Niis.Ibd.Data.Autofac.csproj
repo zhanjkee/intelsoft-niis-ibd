@@ -10,8 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Intelsoft.Niis.Ibd.Configuration\Intelsoft.Niis.Ibd.Configuration.csproj" />
     <ProjectReference Include="..\Intelsoft.Niis.Ibd.Data\Intelsoft.Niis.Ibd.Data.csproj" />
-    <ProjectReference Include="..\Intelsoft.Niis.Ibd.Options\Intelsoft.Niis.Ibd.Options.csproj" />
   </ItemGroup>
 
 </Project>
