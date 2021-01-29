@@ -5,17 +5,21 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.Entities", "src\Intelsoft.Niis.Ibd.Entities\Intelsoft.Niis.Ibd.Entities.csproj", "{A316BE56-BCF8-40A7-BCFB-45241741D972}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.DataAccess.Interfaces", "src\Intelsoft.Niis.Ibd.DataAccess.Interfaces\Intelsoft.Niis.Ibd.DataAccess.Interfaces.csproj", "{CEF730D7-DAB7-41C6-857D-656613AF6B94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.Data.Interfaces", "src\Intelsoft.Niis.Ibd.Data.Interfaces\Intelsoft.Niis.Ibd.Data.Interfaces.csproj", "{CEF730D7-DAB7-41C6-857D-656613AF6B94}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.DataAccess", "src\Intelsoft.Niis.Ibd.DataAccess\Intelsoft.Niis.Ibd.DataAccess.csproj", "{9D4B4514-968B-4F8A-83C8-DD964903EBFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.Data", "src\Intelsoft.Niis.Ibd.Data\Intelsoft.Niis.Ibd.Data.csproj", "{9D4B4514-968B-4F8A-83C8-DD964903EBFB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.DataAccess.Autofac", "src\Intelsoft.Niis.Ibd.DataAccess.Autofac\Intelsoft.Niis.Ibd.DataAccess.Autofac.csproj", "{8F8F8AD5-1211-4D63-978B-E0DF8D0B3388}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.Data.Autofac", "src\Intelsoft.Niis.Ibd.Data.Autofac\Intelsoft.Niis.Ibd.Data.Autofac.csproj", "{8F8F8AD5-1211-4D63-978B-E0DF8D0B3388}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.Options", "src\Intelsoft.Niis.Ibd.Options\Intelsoft.Niis.Ibd.Options.csproj", "{51D2BB84-34F2-4797-A13C-3DCD1C3E3420}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessModule", "DataAccessModule", "{D8AFD805-B98E-4EFD-A733-FD36B15204BB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataModule", "DataModule", "{D8AFD805-B98E-4EFD-A733-FD36B15204BB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{48C1D326-2891-4D06-9C8E-87F4487CAEB1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{48C1D326-2891-4D06-9C8E-87F4487CAEB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4E5F6A76-596F-4E2A-BF1D-10E90029FF87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.Data.Tests", "tests\Intelsoft.Niis.Ibd.Data.Tests\Intelsoft.Niis.Ibd.Data.Tests.csproj", "{984B1FF4-E5B6-439A-9ED1-B108E12216FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +47,10 @@ Global
 		{51D2BB84-34F2-4797-A13C-3DCD1C3E3420}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51D2BB84-34F2-4797-A13C-3DCD1C3E3420}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51D2BB84-34F2-4797-A13C-3DCD1C3E3420}.Release|Any CPU.Build.0 = Release|Any CPU
+		{984B1FF4-E5B6-439A-9ED1-B108E12216FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{984B1FF4-E5B6-439A-9ED1-B108E12216FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{984B1FF4-E5B6-439A-9ED1-B108E12216FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{984B1FF4-E5B6-439A-9ED1-B108E12216FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +60,8 @@ Global
 		{CEF730D7-DAB7-41C6-857D-656613AF6B94} = {D8AFD805-B98E-4EFD-A733-FD36B15204BB}
 		{9D4B4514-968B-4F8A-83C8-DD964903EBFB} = {D8AFD805-B98E-4EFD-A733-FD36B15204BB}
 		{8F8F8AD5-1211-4D63-978B-E0DF8D0B3388} = {D8AFD805-B98E-4EFD-A733-FD36B15204BB}
+		{51D2BB84-34F2-4797-A13C-3DCD1C3E3420} = {48C1D326-2891-4D06-9C8E-87F4487CAEB1}
+		{984B1FF4-E5B6-439A-9ED1-B108E12216FB} = {4E5F6A76-596F-4E2A-BF1D-10E90029FF87}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A081338C-ED29-41A4-8124-B361FFFDFC4C}

@@ -3,6 +3,6 @@
     public enum Method
     {
         Request = 1,
-        Reply = 2
+        Response = 2
     }
 }
