@@ -2,6 +2,7 @@
 using Autofac;
 using Autofac.Integration.Wcf;
 using Intelsoft.Niis.Ibd.Data.Autofac;
+using Intelsoft.Niis.Ibd.Infrastructure.Autofac;
 using Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac;
 
 namespace Intelsoft.Niis.Ibd.ReceiveStatusService.WebHost
@@ -21,6 +22,7 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.WebHost
         private static void RegisterModules(ContainerBuilder builder)
         {
             builder.RegisterModule<ReceiveStatusServiceModule>();
+            builder.RegisterModule<InfrastructureModule>();
             builder.RegisterModule<DataModule>();
         }
     }

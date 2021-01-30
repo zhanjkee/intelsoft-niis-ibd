@@ -21,17 +21,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.Configur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.Configuration.Tests", "tests\Intelsoft.Niis.Ibd.Configuration.Tests\Intelsoft.Niis.Ibd.Configuration.Tests.csproj", "{19B5CECA-AD10-45B2-8587-E2C2D5F7F3EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.Contract", "src\Intelsoft.Niis.Ibd.ReceiveStatusService.Contract\Intelsoft.Niis.Ibd.ReceiveStatusService.Contract.csproj", "{E527723B-851D-4E6B-B8C2-A36E961D02D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.Contract", "src\Intelsoft.Niis.Ibd.ReceiveStatusService.Contract\Intelsoft.Niis.Ibd.ReceiveStatusService.Contract.csproj", "{E527723B-851D-4E6B-B8C2-A36E961D02D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation", "src\Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation\Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation.csproj", "{289AAFA8-7919-4532-8118-B488AC23D41D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation", "src\Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation\Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation.csproj", "{289AAFA8-7919-4532-8118-B488AC23D41D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.WebHost", "src\Intelsoft.Niis.Ibd.ReceiveStatusService.WebHost\Intelsoft.Niis.Ibd.ReceiveStatusService.WebHost.csproj", "{3B4AA392-279A-4CF6-B89D-0AA5CA61632E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.Shared", "src\Intelsoft.Niis.Ibd.Shared\Intelsoft.Niis.Ibd.Shared.csproj", "{3E6FCDF7-B8E6-47E2-A304-1972623E1F5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.Shared", "src\Intelsoft.Niis.Ibd.Shared\Intelsoft.Niis.Ibd.Shared.csproj", "{3E6FCDF7-B8E6-47E2-A304-1972623E1F5B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.Data.Tools", "src\Intelsoft.Niis.Ibd.Data.Tools\Intelsoft.Niis.Ibd.Data.Tools.csproj", "{1FB538DF-1CD0-4BFB-9FD5-9BAA04171D3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac", "src\Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac\Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac.csproj", "{A5D4B6A5-48C0-4928-B372-817F15A4645F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac", "src\Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac\Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac.csproj", "{A5D4B6A5-48C0-4928-B372-817F15A4645F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InfrastructureModule", "InfrastructureModule", "{79277149-A0C5-4B89-A943-61B312AB0B21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.Infrastructure", "src\Intelsoft.Niis.Ibd.Infrastructure\Intelsoft.Niis.Ibd.Infrastructure.csproj", "{385AF318-3E4C-4BB9-A54D-BB21F11F7EF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.Infrastructure.Autofac", "src\Intelsoft.Niis.Ibd.Infrastructure.Autofac\Intelsoft.Niis.Ibd.Infrastructure.Autofac.csproj", "{FB05B020-417E-4FE2-9C46-619EAB23B6A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +97,14 @@ Global
 		{A5D4B6A5-48C0-4928-B372-817F15A4645F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5D4B6A5-48C0-4928-B372-817F15A4645F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5D4B6A5-48C0-4928-B372-817F15A4645F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{385AF318-3E4C-4BB9-A54D-BB21F11F7EF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{385AF318-3E4C-4BB9-A54D-BB21F11F7EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{385AF318-3E4C-4BB9-A54D-BB21F11F7EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{385AF318-3E4C-4BB9-A54D-BB21F11F7EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB05B020-417E-4FE2-9C46-619EAB23B6A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB05B020-417E-4FE2-9C46-619EAB23B6A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB05B020-417E-4FE2-9C46-619EAB23B6A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB05B020-417E-4FE2-9C46-619EAB23B6A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +117,8 @@ Global
 		{984B1FF4-E5B6-439A-9ED1-B108E12216FB} = {4E5F6A76-596F-4E2A-BF1D-10E90029FF87}
 		{19B5CECA-AD10-45B2-8587-E2C2D5F7F3EE} = {4E5F6A76-596F-4E2A-BF1D-10E90029FF87}
 		{1FB538DF-1CD0-4BFB-9FD5-9BAA04171D3A} = {D8AFD805-B98E-4EFD-A733-FD36B15204BB}
+		{385AF318-3E4C-4BB9-A54D-BB21F11F7EF7} = {79277149-A0C5-4B89-A943-61B312AB0B21}
+		{FB05B020-417E-4FE2-9C46-619EAB23B6A2} = {79277149-A0C5-4B89-A943-61B312AB0B21}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A081338C-ED29-41A4-8124-B361FFFDFC4C}

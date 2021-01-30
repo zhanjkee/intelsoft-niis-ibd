@@ -6,6 +6,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Data.Interfaces\Intelsoft.Niis.Ibd.Data.Interfaces.csproj" />
+		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Infrastructure\Intelsoft.Niis.Ibd.Infrastructure.csproj" />
 		<ProjectReference Include="..\Intelsoft.Niis.Ibd.ReceiveStatusService.Contract\Intelsoft.Niis.Ibd.ReceiveStatusService.Contract.csproj" />
 		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Shared\Intelsoft.Niis.Ibd.Shared.csproj" />
 	</ItemGroup>

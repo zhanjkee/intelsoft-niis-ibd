@@ -5,9 +5,9 @@ using System.Xml.Linq;
 using Intelsoft.Niis.Ibd.Data.Interfaces;
 using Intelsoft.Niis.Ibd.Entities;
 using Intelsoft.Niis.Ibd.Entities.Enums;
-using Intelsoft.Niis.Ibd.Entities.Maps;
 using Intelsoft.Niis.Ibd.ReceiveStatusService.Contract;
 using Intelsoft.Niis.Ibd.Shared.Extensions;
+using Serilog;
 
 namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation
 {
@@ -15,10 +15,12 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation
     public class ReceiveStatusService : IReceiveStatusService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogger _logger;
 
-        public ReceiveStatusService(IUnitOfWork unitOfWork)
+        public ReceiveStatusService(IUnitOfWork unitOfWork, ILogger logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         /// <inheritdoc cref="IReceiveStatusService.SendMessageResponse"/>
@@ -29,6 +31,9 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation
                 // Содержит XML запрос.
                 // NOTE: Получаем запрос из OperationContext, а не из аргумента метода.
                 var rawData = OperationContext.Current.RequestContext.RequestMessage.ToString();
+
+                _logger.Information($"Incomming request: {rawData}");
+
                 if (rawData == null) return;
 
                 // NOTE: Не десериализуем. Не совсем понятно, чего ожидать от ШЭП или ИБД.
@@ -57,15 +62,15 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation
             }
             catch (Exception e)
             {
-                // TODO: Use logger.
+                _logger.Error(e, nameof(SendMessageResponse));
             }
         }
 
         private static MessageEntity CreateMessage(XContainer container, string rawData)
         {
-            var messageId = (string) container.Element("messageId");
+            var messageId = (string)container.Element("messageId");
             var messageDate = container.Element("responseDate")?.ToString().Convert(DateTime.Now);
-            var correlationId = (string) container.Element("correlationId");
+            var correlationId = (string)container.Element("correlationId");
 
             return new MessageEntity(messageId,
                 messageDate,
@@ -89,12 +94,6 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation
                 errorCode,
                 dataProcessingText,
                 requestId);
-        }
-
-        private static IbdResponseMessageMapEntity CreateIbdResponseMessageMap(IbdResponseEntity ibdResponse,
-            MessageEntity message)
-        {
-            return new IbdResponseMessageMapEntity(ibdResponse, message);
         }
     }
 }
