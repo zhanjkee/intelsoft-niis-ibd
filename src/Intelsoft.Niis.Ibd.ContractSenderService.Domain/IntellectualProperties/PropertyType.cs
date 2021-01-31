@@ -1,5 +1,8 @@
-﻿namespace Intelsoft.Niis.Ibd.Entities.Enums
+﻿using System;
+
+namespace Intelsoft.Niis.Ibd.ContractSenderService.Domain.IntellectualProperties
 {
+    [Serializable]
     public enum PropertyType
     {
         Invention = 1,

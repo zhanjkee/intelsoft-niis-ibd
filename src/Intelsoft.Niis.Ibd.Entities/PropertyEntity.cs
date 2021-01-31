@@ -14,7 +14,7 @@ namespace Intelsoft.Niis.Ibd.Entities
         /// <summary>
         ///     Вид объекта.
         /// </summary>
-        public PropertyType Type { get; set; }
+        public PropertyTypeEntity Type { get; set; }
 
         /// <summary>
         ///     Номер охранного документа.

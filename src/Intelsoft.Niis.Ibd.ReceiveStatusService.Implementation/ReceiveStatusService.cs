@@ -75,9 +75,9 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation
             return new MessageEntity(messageId,
                 messageDate,
                 correlationId,
-                Method.Request,
-                Direction.Ibd,
-                Direction.Niis,
+                MethodEntity.Request,
+                DirectionEntity.Ibd,
+                DirectionEntity.Niis,
                 rawData);
         }
 

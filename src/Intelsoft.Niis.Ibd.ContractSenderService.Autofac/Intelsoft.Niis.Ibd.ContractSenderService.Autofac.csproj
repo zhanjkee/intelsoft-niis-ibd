@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;net472</TargetFrameworks>
@@ -6,12 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Intelsoft.Niis.Ibd.Configuration\Intelsoft.Niis.Ibd.Configuration.csproj" />
-    <ProjectReference Include="..\Intelsoft.Niis.Ibd.Data\Intelsoft.Niis.Ibd.Data.csproj" />
+    <ProjectReference Include="..\Intelsoft.Niis.Ibd.ContractSenderService.Core\Intelsoft.Niis.Ibd.ContractSenderService.Core.csproj" />
   </ItemGroup>
 
 </Project>

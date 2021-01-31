@@ -11,9 +11,9 @@ namespace Intelsoft.Niis.Ibd.Infrastructure.Logging
     {
         private readonly NiisIbdSettings _configuration;
 
-        public SerilogLoggerFactory()
+        public SerilogLoggerFactory(NiisIbdSettings configuration)
         {
-            _configuration = NiisIbdSettingsReader.Read();
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         public ILogger CreateLogger()

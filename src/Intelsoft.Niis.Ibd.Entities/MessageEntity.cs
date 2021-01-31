@@ -17,9 +17,9 @@ namespace Intelsoft.Niis.Ibd.Entities
             string messageId,
             DateTime? messageDate,
             string correlationId,
-            Method method,
-            Direction from,
-            Direction to,
+            MethodEntity method,
+            DirectionEntity from,
+            DirectionEntity to,
             string rawData)
         {
             MessageId = messageId;
@@ -49,17 +49,17 @@ namespace Intelsoft.Niis.Ibd.Entities
         /// <summary>
         ///     Метод сообщения. Request | Reply.
         /// </summary>
-        public Method Method { get; set; }
+        public MethodEntity Method { get; set; }
 
         /// <summary>
         ///     Направление. Niis | Ibd.
         /// </summary>
-        public Direction From { get; set; }
+        public DirectionEntity From { get; set; }
 
         /// <summary>
         ///     Направление. Niis | Ibd.
         /// </summary>
-        public Direction To { get; set; }
+        public DirectionEntity To { get; set; }
 
         /// <summary>
         ///     Сообщение xml в сыром виде.
@@ -71,11 +71,26 @@ namespace Intelsoft.Niis.Ibd.Entities
 
         public void AddIdbResponses(params IbdResponseEntity[] ibdResponses)
         {
+            if (ibdResponses == null || ibdResponses.Length == 0) return;
+
+
             if (IbdResponses == null) IbdResponses = new List<IbdResponseMessageMapEntity>(ibdResponses.Length);
 
             foreach (var ibdResponse in ibdResponses)
             {
                 IbdResponses.Add(new IbdResponseMessageMapEntity(ibdResponse, this));
+            }
+        }
+
+        public void AddContractRequests(params ContractRequestEntity[] contractRequests)
+        {
+            if (contractRequests == null || contractRequests.Length == 0) return;
+            
+            if (ContractRequests == null) ContractRequests = new List<ContractRequestMessageMapEntity>(contractRequests.Length);
+
+            foreach (var contractRequest in contractRequests)
+            {
+                ContractRequests.Add(new ContractRequestMessageMapEntity(contractRequest, this));
             }
         }
     }

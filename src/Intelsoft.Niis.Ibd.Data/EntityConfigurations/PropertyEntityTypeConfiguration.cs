@@ -10,7 +10,7 @@ namespace Intelsoft.Niis.Ibd.Data.EntityConfigurations
         {
             builder.Property(x => x.Type)
                 .HasConversion(x => (int)x,
-                    x => (PropertyType)x);
+                    x => (PropertyTypeEntity)x);
         }
     }
 }

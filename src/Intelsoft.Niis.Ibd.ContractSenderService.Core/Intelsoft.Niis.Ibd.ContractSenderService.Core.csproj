@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Intelsoft.Niis.Ibd.ContractSenderService.Domain\Intelsoft.Niis.Ibd.ContractSenderService.Domain.csproj" />
+		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Data.Interfaces\Intelsoft.Niis.Ibd.Data.Interfaces.csproj" />
+		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Infrastructure\Intelsoft.Niis.Ibd.Infrastructure.csproj" />
+		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Shared\Intelsoft.Niis.Ibd.Shared.csproj" />
+	</ItemGroup>
+
+</Project>

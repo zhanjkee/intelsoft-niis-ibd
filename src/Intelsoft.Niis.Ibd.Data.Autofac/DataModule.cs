@@ -16,7 +16,7 @@ namespace Intelsoft.Niis.Ibd.Data.Autofac
         {
             builder.Register(x =>
             {
-                var configuration = NiisIbdSettingsReader.Read();
+                var configuration = x.Resolve<NiisIbdSettings>();
 
                 var dbContextOptionsBuilder = new DbContextOptionsBuilder<DataContext>()
                     .UseSqlServer(configuration.ConnectionString,

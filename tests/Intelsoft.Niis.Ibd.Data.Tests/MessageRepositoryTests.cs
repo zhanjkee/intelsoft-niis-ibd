@@ -29,9 +29,9 @@ namespace Intelsoft.Niis.Ibd.Data.Tests
                 messageId,
                 messageDate,
                 correlationId,
-                Method.Request,
-                Direction.Ibd,
-                Direction.Niis,
+                MethodEntity.Request,
+                DirectionEntity.Ibd,
+                DirectionEntity.Niis,
                 string.Empty
             ));
             _unitOfWork.SaveChanges();

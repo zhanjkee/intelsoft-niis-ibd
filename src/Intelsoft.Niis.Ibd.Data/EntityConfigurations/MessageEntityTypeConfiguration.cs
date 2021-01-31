@@ -11,15 +11,15 @@ namespace Intelsoft.Niis.Ibd.Data.EntityConfigurations
         {
             builder.Property(x => x.Method)
                 .HasConversion(x => x.ToString(),
-                    x => (Method)Enum.Parse(typeof(Method), x));
+                    x => (MethodEntity)Enum.Parse(typeof(MethodEntity), x));
 
             builder.Property(x => x.From)
                 .HasConversion(x => x.ToString(),
-                    x => (Direction)Enum.Parse(typeof(Direction), x));
+                    x => (DirectionEntity)Enum.Parse(typeof(DirectionEntity), x));
 
             builder.Property(x => x.To)
                 .HasConversion(x => x.ToString(),
-                    x => (Direction)Enum.Parse(typeof(Direction), x));
+                    x => (DirectionEntity)Enum.Parse(typeof(DirectionEntity), x));
         }
     }
 }

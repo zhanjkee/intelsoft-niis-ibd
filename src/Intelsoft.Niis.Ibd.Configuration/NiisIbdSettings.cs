@@ -10,6 +10,7 @@ namespace Intelsoft.Niis.Ibd.Configuration
         public const string SectionName = "niisIbdSettings";
 
         public const string ConnectionStringKey = "connectionString";
+        public const string ReceiveStatusServiceWebAddressKey = "receiveStatusServiceWebAddress";
         public const string ShepWebAddressKey = "shepWebAddress";
         public const string LogPathKey = "logPath";
         public const string FileSizeLimitMBytesKey = "fileSizeLimitMBytes";
@@ -24,6 +25,18 @@ namespace Intelsoft.Niis.Ibd.Configuration
         {
             get => this[ConnectionStringKey].ToString();
             set => this[ConnectionStringKey] = value;
+        }
+
+        /// <summary>
+        ///     Адрес WCF сервиса для приема статусов от ИБД.
+        /// </summary>
+        [ConfigurationProperty(ReceiveStatusServiceWebAddressKey,
+            DefaultValue = "http://localhost:5005/Services/SendMessageResponse.svc",
+            IsRequired = true)]
+        public string ReceiveStatusServiceWebAddress
+        {
+            get => this[ReceiveStatusServiceWebAddressKey].ToString();
+            set => this[ReceiveStatusServiceWebAddressKey] = value;
         }
 
         /// <summary>
