@@ -16,7 +16,7 @@
 
 
             public const string SendMessageTemplate = @"
-<?xml version=""1.0"" encoding=""UTF-8""?><S:Envelope xmlns:S=""http://schemas.xmlsoap.org/soap/envelope/""><SOAP-ENV:Header xmlns:SOAP-ENV=""http://schemas.xmlsoap.org/soap/envelope/""/><S:Body>
+<S:Envelope xmlns:S=""http://schemas.xmlsoap.org/soap/envelope/""><SOAP-ENV:Header xmlns:SOAP-ENV=""http://schemas.xmlsoap.org/soap/envelope/""/><S:Body>
             <ns2:sendMessage xmlns:ns2=""http://bip.bee.kz/AsyncChannel/v10/Types"">
             <request>
             <messageInfo>

@@ -75,7 +75,7 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                     b.Property<DateTime?>("ContractRegistrationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ContractTypeId")
+                    b.Property<int>("TypeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ContractValidityDate")

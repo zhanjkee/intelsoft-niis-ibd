@@ -125,8 +125,7 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                     AssigneeName = table.Column<string>(nullable: true),
                     ContractNumber = table.Column<string>(nullable: true),
                     ContractRegistrationDate = table.Column<DateTime>(nullable: true),
-                    ContractTypeId = table.Column<int>(nullable: false),
-                    TypeId = table.Column<int>(nullable: true),
+                    TypeId = table.Column<int>(nullable: false),
                     ContractValidityDate = table.Column<DateTime>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     UpdatedDate = table.Column<DateTime>(nullable: true),
@@ -157,7 +156,7 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Dispatched = table.Column<bool>(nullable: false),
-                    DispatchingDate = table.Column<DateTime>(nullable: false),
+                    DispatchingDate = table.Column<DateTime>(nullable: true),
                     ContractRequestId = table.Column<int>(nullable: false),
                     RowCreatedDate = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true)

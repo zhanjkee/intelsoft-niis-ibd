@@ -33,6 +33,8 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Services
         {
             return _unitOfWork?.ContractRepository?.GetAvailableContracts()
                 ?.Include(x => x.DispatchStatus)
+                ?.Include(x => x.Type)
+                ?.Include(x => x.Property)
                 ?.ToList();
         }
 
@@ -41,6 +43,9 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Services
         {
             if (contract == null)
                 throw new ArgumentNullException(nameof(contract));
+
+            if (contract.Type == null || contract.Property == null || contract.DispatchStatus == null)
+                return;
 
             var messageId = Guid.NewGuid().ToString();
             var messageDate = DateTime.Now;

@@ -73,7 +73,7 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                     b.Property<DateTime?>("ContractRegistrationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ContractTypeId")
+                    b.Property<int>("TypeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ContractValidityDate")
@@ -95,9 +95,6 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
-
-                    b.Property<int?>("TypeId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");

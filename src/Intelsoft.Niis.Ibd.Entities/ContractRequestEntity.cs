@@ -52,7 +52,7 @@ namespace Intelsoft.Niis.Ibd.Entities
         /// </summary>
         public DateTime? ContractRegistrationDate { get; set; }
 
-        public int ContractTypeId { get; set; }
+        public int TypeId { get; set; }
         
         /// <summary>
         ///     Вид договора.
