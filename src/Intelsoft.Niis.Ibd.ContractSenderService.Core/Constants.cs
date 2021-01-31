@@ -6,7 +6,7 @@
         {
             public class Actions
             {
-                public const string SendMessage = "SendMessage";
+                public const string SendMessage = "";
             }
 
             public class Methods

@@ -50,7 +50,7 @@ namespace Intelsoft.Niis.Ibd.Infrastructure.Logging
                     fileSizeLimitBytes: options.FileSizeLimitMBytes * 1024 * 1024);
             }
 
-            loggerConfiguration.WriteTo.Async(x => x.Console(theme: AnsiConsoleTheme.Code));
+            loggerConfiguration.WriteTo.Console(theme: AnsiConsoleTheme.Code);
 
             return loggerConfiguration;
         }

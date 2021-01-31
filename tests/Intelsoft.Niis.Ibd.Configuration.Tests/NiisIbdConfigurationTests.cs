@@ -1,11 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 
 namespace Intelsoft.Niis.Ibd.Configuration.Tests
 {
-    [TestClass]
     public class NiisIbdConfigurationTests
     {
-        [TestMethod]
+        [Fact]
         public void ReadConfigurationTest()
         {
             // Arrange.
@@ -18,10 +17,10 @@ namespace Intelsoft.Niis.Ibd.Configuration.Tests
             var configuration = NiisIbdSettingsReader.Read();
             
             // Assert.
-            Assert.IsTrue(configuration.ConnectionString.Equals(connectionString));
-            Assert.IsTrue(configuration.ShepWebAddress.Equals(shepWebAddress));
-            Assert.IsTrue(configuration.LogPath.Equals(logPath));
-            Assert.IsTrue(configuration.FileSizeLimitMBytes == fileSizeLimitMBytes);
+            Assert.Equal(configuration.ConnectionString, connectionString);
+            Assert.Equal(configuration.ShepWebAddress, shepWebAddress);
+            Assert.Equal(configuration.LogPath,(logPath));
+            Assert.True(configuration.FileSizeLimitMBytes == fileSizeLimitMBytes);
         }
     }
 }

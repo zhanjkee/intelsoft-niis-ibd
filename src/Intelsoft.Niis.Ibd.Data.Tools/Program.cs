@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Autofac;
+using Intelsoft.Niis.Ibd.Configuration;
 using Intelsoft.Niis.Ibd.Data.Autofac;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,10 @@ namespace Intelsoft.Niis.Ibd.Data.Tools
             try
             {
                 var builder = new ContainerBuilder();
+                builder.Register(x => NiisIbdSettingsReader.Read())
+                    .SingleInstance()
+                    .AsSelf()
+                    .AutoActivate();
                 builder.RegisterModule<DataModule>();
                 var container = builder.Build();
 
