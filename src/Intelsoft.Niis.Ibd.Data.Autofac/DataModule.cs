@@ -31,19 +31,19 @@ namespace Intelsoft.Niis.Ibd.Data.Autofac
             }).SingleInstance();
 
             builder.RegisterType<DataContext>().As<IDataContext>()
-                .InstancePerLifetimeScope();
+                .InstancePerDependency();
 
             builder.RegisterType<DataContextFactory>().As<IDataContextFactory>()
-                .InstancePerLifetimeScope();
+                .InstancePerDependency();
 
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>()
-                .InstancePerLifetimeScope();
+                .InstancePerDependency();
 
             builder.RegisterType<MessageRepository>().As<IMessageRepository>()
-                .InstancePerLifetimeScope();
+                .InstancePerDependency();
 
             builder.RegisterType<ContractRepository>().As<IContractRepository>()
-                .InstancePerLifetimeScope();
+                .InstancePerDependency();
         }
     }
 }

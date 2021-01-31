@@ -57,7 +57,8 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation
                     message.AddIdbResponses(ibdResponse);
                 }
 
-                _unitOfWork.MessageRepository.Add(message);
+                var messageRepository = _unitOfWork.MessageRepository;
+                messageRepository.Add(message);
                 _unitOfWork.SaveChanges();
             }
             catch (Exception e)
