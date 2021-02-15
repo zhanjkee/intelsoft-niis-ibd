@@ -29,10 +29,7 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Domain.Contracts
         }
         private DateTime? _contractValidityDate;
 
-        [XmlElement(DataType = "date")]
         public DateTime CreatedDate { get; set; }
-
-        [XmlElement(DataType = "date")]
         public DateTime? UpdatedDate { get; set; }
     }
 }

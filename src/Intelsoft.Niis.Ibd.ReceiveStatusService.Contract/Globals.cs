@@ -2,8 +2,10 @@
 {
     public class Globals
     {
-        public const string ReceiveStatusServiceContractName = "SendMessageResponse";
-        public const string ReceiveStatusServiceActionName = "SendMessageResponse";
-        public const string ReceiveStatusServiceContractNameNamespace = "http://bip.bee.kz/AsyncChannel/v10/Types";
+        public const string ServiceActionName = "SendMessageResponse";
+        public const string SendMessage = "sendMessage";
+        public const string ServiceContractNamespace = "http://bip.bee.kz/AsyncChannel/v10/Types";
+        public const string EmptyNamespace = "";
+        public const string SecurityHeaderNamespace = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd";
     }
 }

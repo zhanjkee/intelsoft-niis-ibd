@@ -52,7 +52,7 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Builders
             return string.Format(Constants.EgovGateway.SendMessageTemplate, 
                 _messageId,
                 _serviceId,
-                _messageDate.ToString("yyyy-MM-dd"),
+                _messageDate.ToString("yyyy-MM-ddTHH:mm:ss"),
                 _senderId,
                 _password,
                 _data);

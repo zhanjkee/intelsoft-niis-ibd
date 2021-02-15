@@ -10,14 +10,14 @@ namespace Intelsoft.Niis.Ibd.Selfhost.HostedServices
 {
     public class ReceiveStatusHostedService : ServiceControl
     {
-        private readonly IReceiveStatusService _receiveStatusService;
+        private readonly ISendMessageResponseService _sendMessageResponseService;
         private readonly NiisIbdSettings _configuration;
         private readonly ILogger _logger;
         private ServiceHost _selfHost;
 
-        public ReceiveStatusHostedService(IReceiveStatusService receiveStatusService, NiisIbdSettings configuration, ILogger logger)
+        public ReceiveStatusHostedService(ISendMessageResponseService sendMessageResponseService, NiisIbdSettings configuration, ILogger logger)
         {
-            _receiveStatusService = receiveStatusService ?? throw new ArgumentNullException(nameof(receiveStatusService));
+            _sendMessageResponseService = sendMessageResponseService ?? throw new ArgumentNullException(nameof(sendMessageResponseService));
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -30,13 +30,16 @@ namespace Intelsoft.Niis.Ibd.Selfhost.HostedServices
                 var baseAddress = new Uri(_configuration.ReceiveStatusServiceWebAddress);
 
                 // Create a ServiceHost instance.
-                _selfHost = new ServiceHost(_receiveStatusService, baseAddress);
+                _selfHost = new ServiceHost(_sendMessageResponseService, baseAddress);
 
                 // Add a service endpoint.
-                _selfHost.AddServiceEndpoint(typeof(IReceiveStatusService), new BasicHttpBinding(), "");
+                _selfHost.AddServiceEndpoint(
+                    implementedContract: typeof(ISendMessageResponseService),
+                    binding: new BasicHttpBinding(),
+                    address: "");
 
                 // Enable metadata exchange.
-                var smb = new ServiceMetadataBehavior { HttpGetEnabled = true };
+                var smb = new ServiceMetadataBehavior { HttpGetEnabled = true, HttpsGetEnabled = true };
                 _selfHost.Description.Behaviors.Add(smb);
 
                 // Start the wcf service.

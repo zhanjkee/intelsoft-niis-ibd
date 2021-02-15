@@ -7,10 +7,10 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Implementation.ReceiveStatusService>().As<IReceiveStatusService>()
+            builder.RegisterType<Implementation.SendMessageResponseService>().As<ISendMessageResponseService>()
                 .SingleInstance();
 
-            builder.RegisterType<Implementation.ReceiveStatusService>()
+            builder.RegisterType<Implementation.SendMessageResponseService>()
                 .SingleInstance();
         }
     }
