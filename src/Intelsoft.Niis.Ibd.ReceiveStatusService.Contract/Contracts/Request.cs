@@ -5,7 +5,7 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Contract.Contracts
     /// <summary>
     ///     Запрос.
     /// </summary>
-    [DataContract(Namespace = Globals.EmptyNamespace)]
+    [DataContract(Namespace = Globals.Empty)]
     public class Request
     {
         /// <summary>

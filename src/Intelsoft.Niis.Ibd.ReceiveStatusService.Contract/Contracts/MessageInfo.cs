@@ -6,7 +6,7 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Contract.Contracts
     /// <summary>
     ///     Метаданные сообщения.
     /// </summary>
-    [DataContract(Namespace = Globals.EmptyNamespace)]
+    [DataContract(Namespace = Globals.Empty)]
     public class MessageInfo
     {
         /// <summary>

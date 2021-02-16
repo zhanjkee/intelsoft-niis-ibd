@@ -5,7 +5,7 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Contract.Contracts
     /// <summary>
     ///     Объект передачи данных.
     /// </summary>
-    [DataContract(Namespace = Globals.EmptyNamespace)]
+    [DataContract(Namespace = Globals.Empty)]
     public class MessageData
     {
         /// <summary>

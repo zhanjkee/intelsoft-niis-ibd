@@ -17,7 +17,7 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Contract
         /// <param name="request">Сообщение от ИБД</param>
         [OperationContract(
             Name = Globals.SendMessage,
-            Action = Globals.SendMessage)]
+            Action = Globals.Empty)]
         void SendMessage(SendMessageResponse request);
     }
 }

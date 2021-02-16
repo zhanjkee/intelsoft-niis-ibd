@@ -28,7 +28,7 @@ namespace Intelsoft.Niis.Ibd.ReceiveStatusService.Contract.Contracts
         /// </summary>
         [MessageBodyMember(
             Name = "request",
-            Namespace = Globals.EmptyNamespace)]
+            Namespace = Globals.Empty)]
         public Request Request
         {
             get; set;
