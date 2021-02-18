@@ -9,13 +9,13 @@ namespace Intelsoft.Niis.Ibd.Configuration.UnitTests
         public void Read_ContractSenderServiceConfiguration_ShouldSucceed()
         {
             // Arrange.
-            const string shepWebAddress = "http://10.61.40.133:9010/bip-async";
+            const string shepWebAddress = "http://localhost:9010/bip-async";
             const string serviceId = "IbdNiisActual";
             const string senderId = "kazpatent";
-            const string password = "CY}C@ne$Wo";
+            const string password = "kazpatent-password";
             const bool needToSingXml = false;
-            const string edsPath = "C:\\EDS\\test.pfx";
-            const string edsPassword = "123456";
+            const string edsPath = @"C:\\EDS\\Cert.pfx";
+            const string edsPassword = "TEST";
             const bool useRetryPolicy = false;
             const int maxRetryAttempts = 2;
             const int pauseBetweenFailuresInMinutes = 3;
