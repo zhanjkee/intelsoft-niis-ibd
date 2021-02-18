@@ -1,16 +1,17 @@
-﻿using Intelsoft.Niis.Ibd.ContractSenderService.Domain.Contracts;
+﻿using Intelsoft.Niis.Ibd.ContractSenderService.Domain.Contract;
+using Intelsoft.Niis.Ibd.ContractSenderService.Domain.ReferenceData;
 using Intelsoft.Niis.Ibd.Entities;
 
 namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Mappers
 {
     public static class ContractMapper
     {
-        public static Contract ToDomain(this ContractRequestEntity entity)
+        public static ContractData ToDomain(this ContractRequestEntity entity)
         {
             if (entity == null)
                 return null;
 
-            return new Contract
+            return new ContractData
             {
                 Property = entity.Property.ToDomain(),
                 ContractType = entity.Type.ToDomain(),
@@ -27,12 +28,12 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Mappers
             };
         }
 
-        public static ContractType ToDomain(this ContractTypeEntity entity)
+        public static ContractReference ToDomain(this ContractTypeEntity entity)
         {
             if (entity == null)
                 return null;
 
-            return new ContractType
+            return new ContractReference
             {
                 Id = entity.Id,
                 NameKz = entity.NameKz,

@@ -1,4 +1,5 @@
-﻿using Intelsoft.Niis.Ibd.ContractSenderService.Domain.IntellectualProperties;
+﻿using Intelsoft.Niis.Ibd.ContractSenderService.Domain.Property;
+using Intelsoft.Niis.Ibd.ContractSenderService.Domain.ReferenceData;
 using Intelsoft.Niis.Ibd.Entities;
 using Intelsoft.Niis.Ibd.Entities.Enums;
 
@@ -6,12 +7,12 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Mappers
 {
     public static class PropertyMapper
     {
-        public static Property ToDomain(this PropertyEntity entity)
+        public static PropertyData ToDomain(this PropertyEntity entity)
         {
             if (entity == null)
                 return null;
 
-            return new Property
+            return new PropertyData
             {
                 Name = entity.Name,
                 ProtectionNumber = entity.ProtectionNumber,
@@ -21,9 +22,9 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Mappers
             };
         }
 
-        public static PropertyType ToDomain(this PropertyTypeEntity entity)
+        public static PropertyReference ToDomain(this PropertyTypeEntity entity)
         {
-            return (PropertyType)entity;
+            return (PropertyReference) entity;
         }
     }
 }

@@ -7,6 +7,7 @@ namespace Intelsoft.Niis.Ibd.Data.Interfaces.Base
 {
     public interface IRepository<T> where T : EntityBase
     {
+        T GetById(object id);
         IQueryable<T> GetAll();
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
         void Add(T entity);

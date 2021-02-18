@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace Intelsoft.Niis.Ibd.Data.Repositories
 {
-    public class MessageRepository : Repository<MessageEntity> , IMessageRepository
+    public class MessageRepository : Repository<MessageEntity>, IMessageRepository
     {
         public MessageRepository([NotNull] IDataContext context) : base(context)
         {

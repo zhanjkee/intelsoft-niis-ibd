@@ -1,13 +1,16 @@
 ﻿using Intelsoft.Niis.Ibd.Entities.Maps;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Intelsoft.Niis.Ibd.Data.EntityConfigurations
 {
-    internal class IbdResponseMessageMapEntityTypeConfiguration : EntityBaseTypeConfiguration<IbdResponseMessageMapEntity>
+    internal class IbdResponseMessageMapEntityTypeConfiguration : IEntityTypeConfiguration<IbdResponseMessageMapEntity>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<IbdResponseMessageMapEntity> builder)
+        public void Configure(EntityTypeBuilder<IbdResponseMessageMapEntity> builder)
         {
-            builder.HasKey(x => new { x.IbdResponseId, x.MessageId });
+            builder.HasKey(x => x.Id);
+
+            builder.HasKey(x => new {x.IbdResponseId, x.MessageId});
 
             builder.HasOne(x => x.IbdResponse)
                 .WithMany(x => x.Messages)
@@ -16,6 +19,8 @@ namespace Intelsoft.Niis.Ibd.Data.EntityConfigurations
             builder.HasOne(x => x.Message)
                 .WithMany(x => x.IbdResponses)
                 .HasForeignKey(x => x.MessageId);
+
+            builder.Property(x => x.RowVersion).IsRowVersion().IsRequired();
         }
     }
 }

@@ -2,86 +2,124 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using Intelsoft.Niis.Ibd.ContractSenderService.Configuration;
 using Intelsoft.Niis.Ibd.ContractSenderService.Core.Builders;
+using Intelsoft.Niis.Ibd.ContractSenderService.Core.Exceptions;
 using Intelsoft.Niis.Ibd.ContractSenderService.Core.Mappers;
+using Intelsoft.Niis.Ibd.ContractSenderService.Core.Properties;
+using Intelsoft.Niis.Ibd.ContractSenderService.Domain.Contract;
 using Intelsoft.Niis.Ibd.Data.Interfaces;
 using Intelsoft.Niis.Ibd.Entities;
 using Intelsoft.Niis.Ibd.Entities.Enums;
-using Intelsoft.Niis.Ibd.Infrastructure.Soap;
+using Intelsoft.Niis.Ibd.Entities.Maps;
+using Intelsoft.Niis.Ibd.Infrastructure.SoapExecutor;
 using Intelsoft.Niis.Ibd.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Polly;
+using Polly.Retry;
 using Serilog;
 
 namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Services
 {
     public class ContractSenderService : IContractSenderService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ContractSenderServiceConfiguration _configuration;
         private readonly ILogger _logger;
-        private readonly ISoapClient _soapClient;
+        private readonly ISoapExecutor _soapExecutor;
+        private readonly RetryPolicy _soapRetryPolicy;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ContractSenderService(IUnitOfWork unitOfWork, ISoapClient soapClient, ILogger logger)
+        public ContractSenderService(
+            IUnitOfWork unitOfWork,
+            ISoapExecutor soapExecutor,
+            ContractSenderServiceConfiguration configuration,
+            ILogger logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-            _soapClient = soapClient ?? throw new ArgumentNullException(nameof(soapClient));
+            _soapExecutor = soapExecutor ?? throw new ArgumentNullException(nameof(soapExecutor));
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
+            _soapRetryPolicy = Policy.Handle<Exception>()
+                .WaitAndRetry(_configuration.MaxRetryAttempts, i =>
+                    TimeSpan.FromMinutes(_configuration.PauseBetweenFailuresInMinutes));
         }
 
-        /// <inheritdoc cref="IContractSenderService.GetAvailableContracts"/>
-        public IEnumerable<ContractRequestEntity> GetAvailableContracts()
+        /// <inheritdoc cref="IContractSenderService.GetAvailableContracts" />
+        public IEnumerable<ContractData> GetAvailableContracts()
         {
             return _unitOfWork?.ContractRepository?.GetAvailableContracts()
                 ?.Include(x => x.DispatchStatus)
                 ?.Include(x => x.Type)
                 ?.Include(x => x.Property)
-                ?.ToList();
+                ?.Select(x => x.ToDomain())
+                .ToList();
         }
 
-        /// <inheritdoc cref="IContractSenderService.Send"/>
-        public void Send(ContractRequestEntity contract)
+        /// <inheritdoc cref="IContractSenderService.Send" />
+        public void Send(ContractData contract)
         {
             if (contract == null)
                 throw new ArgumentNullException(nameof(contract));
 
-            if (contract.Type == null || contract.Property == null || contract.DispatchStatus == null)
-                return;
+            if (contract.ContractType == null)
+                throw new ContractException(string.Format(Resources.CannotBeNull, nameof(contract.ContractType)));
+
+            if (contract.Property == null)
+                throw new ContractException(string.Format(Resources.CannotBeNull, nameof(contract.Property)));
+
+            var contractEntity = _unitOfWork.ContractRepository.GetById(contract.Id);
+            if (contractEntity == null)
+                throw new ContractException(string.Format(Resources.NotFoundById, nameof(contractEntity), contract.Id));
 
             var messageId = Guid.NewGuid().ToString();
             var messageDate = DateTime.Now;
-            // TODO: Вынести в конфиги.
-            const string serviceId = "IbdNiisActual";
-            const string senderId = "kazpatent";
-            const string password = "CY}C@ne$Wo";
+            var messageData = contract.SerializeToString();
 
-            // Сериализуем в xml.
-            var contractDomain = contract.ToDomain();
-            var contractXml = contractDomain.SerializeToString();
-
+            // Собираем запрос для ИБД.
             var request = new SendMessageRequestBuilder()
                 .AddMessageId(messageId)
                 .AddMessageDate(messageDate)
-                .AddServiceId(serviceId)
-                .AddSenderId(senderId)
-                .AddPassword(password)
-                .AddData(contractXml)
+                .AddServiceId(_configuration.ServiceId)
+                .AddSenderId(_configuration.SenderId)
+                .AddPassword(_configuration.Password)
+                .AddData(messageData)
+                .NeedToSignRequest(_configuration.NeedToSignXml)
+                .SetEdsPath(_configuration.EdsPath)
+                .SetEdsPassword(_configuration.EdsPassword)
                 .Build();
 
-            var response = string.Empty;
+            SoapExecutionResponse response = null;
             try
             {
-                // TODO: Использовать Retry policy.
                 // Отправляем запрос в ИБД.
-                response = _soapClient.Invoke(
-                            action: Constants.EgovGateway.Actions.SendMessage,
-                            method: Constants.EgovGateway.Methods.Post,
-                            requestData: request);
+
+                var soapRequest = new SoapExecutionRequest(
+                    _configuration.ShepWebAddress,
+                    Constants.EgovGateway.Actions.SendMessage,
+                    Constants.EgovGateway.Methods.Post,
+                    request);
+
+                if (_configuration.UseRetryPolicy)
+                    _soapRetryPolicy.Execute(() =>
+                        response = _soapExecutor.Execute(soapRequest));
+                else
+                    response = _soapExecutor.Execute(soapRequest);
             }
             catch (Exception exception)
             {
-                _logger.Error(exception, nameof(SoapClient.Invoke));
+                _logger.Error(exception, Resources.ErrorSendRequest);
+                throw;
             }
 
+            if (response == null)
+                throw new InvalidOperationException(string.Format(Resources.CannotBeNull, nameof(response)));
+
+            // Изменяем cтатус отправки на True.
+            contractEntity.Dispatch();
+            _unitOfWork.ContractRepository.Edit(contractEntity);
+
+            // Сохраняем отправленный запрос в ИБД.
             var requestMessage = new MessageEntity(
                 messageId,
                 messageDate,
@@ -90,15 +128,18 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Services
                 DirectionEntity.Niis,
                 DirectionEntity.Ibd,
                 request);
-            requestMessage.AddContractRequests(contract);
 
-            // Из респонс получаем correlationId.
-            var responseDocument = XDocument.Parse(response);
-            var responseElement = responseDocument.Descendants()
-                .FirstOrDefault(x => x.Name.LocalName == "response");
+            var contractMessageMap = new ContractRequestMessageMapEntity(contractEntity, requestMessage);
 
-            var correlationId = (string)responseElement?.Element("correlationId") ?? string.Empty;
+            _unitOfWork.MessageRepository.Add(requestMessage);
+            _unitOfWork.ContractRequestMessageMapRepository.Add(contractMessageMap);
 
+            // Парсим correlationId из полученного ответа от ШЭП-а.
+            var responseDocument = XDocument.Parse(response.Value);
+            var responseElement = responseDocument.Descendants().FirstOrDefault(x => x.Name.LocalName == "response");
+            var correlationId = (string) responseElement?.Element("correlationId") ?? string.Empty;
+
+            // Сохраняем полученный ответ.
             var responseMessage = new MessageEntity(
                 messageId,
                 messageDate,
@@ -106,25 +147,19 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Services
                 MethodEntity.Request,
                 DirectionEntity.Ibd,
                 DirectionEntity.Niis,
-                response);
+                response.Value);
 
-            // Сохраняем сообщение.
-            var messageRepository = _unitOfWork.MessageRepository;
-            messageRepository.Add(requestMessage);
-            messageRepository.Add(responseMessage);
-
-            contract.Dispatch();
-
-            _unitOfWork.ContractRepository.Edit(contract);
+            _unitOfWork.MessageRepository.Add(responseMessage);
 
             try
             {
-                // TODO: Использовать Retry policy.
+                // Сохраняем изменения.
                 _unitOfWork.SaveChanges();
             }
             catch (Exception exception)
             {
-                _logger.Error(exception, nameof(IUnitOfWork.SaveChanges));
+                _logger.Error(exception, Resources.ErrorUnitOfWorkSaveChanges);
+                throw;
             }
         }
     }

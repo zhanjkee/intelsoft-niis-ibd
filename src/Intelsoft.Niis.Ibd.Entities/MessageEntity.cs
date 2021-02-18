@@ -10,7 +10,6 @@ namespace Intelsoft.Niis.Ibd.Entities
     {
         protected MessageEntity()
         {
-
         }
 
         public MessageEntity(
@@ -69,29 +68,15 @@ namespace Intelsoft.Niis.Ibd.Entities
         public ICollection<ContractRequestMessageMapEntity> ContractRequests { get; set; }
         public ICollection<IbdResponseMessageMapEntity> IbdResponses { get; set; }
 
-        public void AddIdbResponses(params IbdResponseEntity[] ibdResponses)
-        {
-            if (ibdResponses == null || ibdResponses.Length == 0) return;
-
-
-            if (IbdResponses == null) IbdResponses = new List<IbdResponseMessageMapEntity>(ibdResponses.Length);
-
-            foreach (var ibdResponse in ibdResponses)
-            {
-                IbdResponses.Add(new IbdResponseMessageMapEntity(ibdResponse, this));
-            }
-        }
-
         public void AddContractRequests(params ContractRequestEntity[] contractRequests)
         {
             if (contractRequests == null || contractRequests.Length == 0) return;
-            
-            if (ContractRequests == null) ContractRequests = new List<ContractRequestMessageMapEntity>(contractRequests.Length);
+
+            if (ContractRequests == null)
+                ContractRequests = new List<ContractRequestMessageMapEntity>(contractRequests.Length);
 
             foreach (var contractRequest in contractRequests)
-            {
                 ContractRequests.Add(new ContractRequestMessageMapEntity(contractRequest, this));
-            }
         }
     }
 }

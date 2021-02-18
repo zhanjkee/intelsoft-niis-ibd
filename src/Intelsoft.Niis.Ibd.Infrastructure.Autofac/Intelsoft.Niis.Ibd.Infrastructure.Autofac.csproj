@@ -1,15 +1,27 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net462</TargetFrameworks>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netcoreapp3.1;net462</TargetFrameworks>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Authors>Zhangeldy Kalkenov</Authors>
+		<RepositoryUrl>https://github.com/zhanjkee/intelsoft-niis-ibd</RepositoryUrl>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+	  <Compile Include="..\..\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Intelsoft.Niis.Ibd.Infrastructure\Intelsoft.Niis.Ibd.Infrastructure.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Infrastructure.Serilog.Configuration\Intelsoft.Niis.Ibd.Infrastructure.Serilog.Configuration.csproj" />
+		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Infrastructure\Intelsoft.Niis.Ibd.Infrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Properties\" />
+	</ItemGroup>
 
 </Project>

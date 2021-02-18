@@ -1,5 +1,4 @@
-﻿using Intelsoft.Niis.Ibd.Data.EntityConfigurations;
-using Intelsoft.Niis.Ibd.Data.Interfaces;
+﻿using Intelsoft.Niis.Ibd.Data.Interfaces;
 using Intelsoft.Niis.Ibd.Entities;
 using Intelsoft.Niis.Ibd.Entities.Maps;
 using JetBrains.Annotations;
@@ -11,7 +10,6 @@ namespace Intelsoft.Niis.Ibd.Data
     {
         public DataContext([NotNull] DbContextOptions<DataContext> dbContextOptions) : base(dbContextOptions)
         {
-
         }
 
         public DbSet<ContractRequestEntity> ContractRequests { get; set; }

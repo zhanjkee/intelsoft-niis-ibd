@@ -24,7 +24,7 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                             null);
                     });
             var dbContextOptions = dbContextOptionsBuilder.Options;
-            
+
             return new DataContext(dbContextOptions);
         }
     }

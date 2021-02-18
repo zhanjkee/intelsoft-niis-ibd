@@ -6,7 +6,6 @@ namespace Intelsoft.Niis.Ibd.Entities.Maps
     {
         protected IbdResponseMessageMapEntity()
         {
-            
         }
 
         public IbdResponseMessageMapEntity(IbdResponseEntity ibdResponse, MessageEntity message)

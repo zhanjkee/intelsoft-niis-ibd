@@ -12,38 +12,35 @@ namespace Intelsoft.Niis.Ibd.Selfhost
     {
         private static int Main()
         {
-            return (int)HostFactory.Run(app =>
-           {
-               var container = Global.Instance.Container;
+            return (int) HostFactory.Run(app =>
+            {
+                var container = Autofac.Instance.Container;
 
-               app.UseSerilog();
+                app.UseSerilog();
 
-               app.UseAutofacContainer(container);
+                app.UseAutofacContainer(container);
 
-               app.UseAssemblyInfoForServiceInfo();
+                app.UseAssemblyInfoForServiceInfo();
 
-               app.Service<ReceiveStatusHostedService>(serviceFactory =>
-               {
-                   serviceFactory.ConstructUsingAutofacContainer();
-                   serviceFactory.WhenStarted((service, control) => service.Start(control));
-                   serviceFactory.WhenStopped((service, control) => service.Stop(control));
+                app.Service<ReceiveStatusHostedService>(serviceFactory =>
+                {
+                    serviceFactory.ConstructUsingAutofacContainer();
+                    serviceFactory.WhenStarted((service, control) => service.Start(control));
+                    serviceFactory.WhenStopped((service, control) => service.Stop(control));
 
-                   serviceFactory.ScheduleQuartzJob(q =>
-                       q.WithJob(() =>
-                               JobBuilder.Create<ContractSenderJob>().Build())
-                           .AddTrigger(() => TriggerBuilder.Create()
-                               .WithSimpleSchedule(b => b
-                                       // TODO: Вынести интервал в конфиг.
-                                   .WithIntervalInSeconds(1)
-                                   .RepeatForever())
-                               .Build()));
-               });
+                    serviceFactory.ScheduleQuartzJob(q =>
+                        q.WithJob(() =>
+                                JobBuilder.Create<ContractSenderJob>().Build())
+                            .AddTrigger(() => TriggerBuilder.Create()
+                                .WithSimpleSchedule(b => b
+                                    .WithIntervalInMinutes(Autofac.Instance.ContractSenderServiceConfiguration
+                                        .PauseBetweenCyclesInMinutes)
+                                    .RepeatForever())
+                                .Build()));
+                });
 
-               app.OnException((exception) =>
-               {
-                   Console.WriteLine("Exception thrown - " + exception.Message);
-               });
-           });
+                app.OnException(exception => { Console.WriteLine("Exception thrown - " + exception.Message); });
+            });
         }
     }
 }

@@ -1,14 +1,41 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Authors>Zhangeldy Kalkenov</Authors>
+		<RepositoryUrl>https://github.com/zhanjkee/intelsoft-niis-ibd</RepositoryUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Include="..\..\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Polly" Version="7.2.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Intelsoft.Niis.Ibd.ContractSenderService.Configuration\Intelsoft.Niis.Ibd.ContractSenderService.Configuration.csproj" />
 		<ProjectReference Include="..\Intelsoft.Niis.Ibd.ContractSenderService.Domain\Intelsoft.Niis.Ibd.ContractSenderService.Domain.csproj" />
 		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Data.Interfaces\Intelsoft.Niis.Ibd.Data.Interfaces.csproj" />
 		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Infrastructure\Intelsoft.Niis.Ibd.Infrastructure.csproj" />
 		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Shared\Intelsoft.Niis.Ibd.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 
 </Project>

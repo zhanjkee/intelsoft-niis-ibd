@@ -16,7 +16,14 @@ namespace Intelsoft.Niis.Ibd.Data
 
         public IDataContext Create()
         {
-            return new DataContext(_dbContextOptions);
+            var context = new DataContext(_dbContextOptions);
+
+            var migrations = context.Database.GetPendingMigrations();
+            if (migrations == null) return context;
+
+            context.Database.Migrate();
+
+            return context;
         }
     }
 }

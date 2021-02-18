@@ -4,17 +4,6 @@
     {
         public class EgovGateway
         {
-            public class Actions
-            {
-                public const string SendMessage = "";
-            }
-
-            public class Methods
-            {
-                public const string Post = "POST";
-            }
-
-
             public const string SendMessageTemplate = @"
 <S:Envelope xmlns:S=""http://schemas.xmlsoap.org/soap/envelope/""><SOAP-ENV:Header xmlns:SOAP-ENV=""http://schemas.xmlsoap.org/soap/envelope/""/><S:Body>
             <ns2:sendMessage xmlns:ns2=""http://bip.bee.kz/AsyncChannel/v10/Types"">
@@ -39,6 +28,16 @@
             </data>
             </messageData></request></ns2:sendMessage></S:Body></S:Envelope>
 ";
+
+            public class Actions
+            {
+                public const string SendMessage = "";
+            }
+
+            public class Methods
+            {
+                public const string Post = "POST";
+            }
         }
     }
 }

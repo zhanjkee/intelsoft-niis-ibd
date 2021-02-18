@@ -6,7 +6,6 @@ namespace Intelsoft.Niis.Ibd.Entities.Maps
     {
         protected ContractRequestMessageMapEntity()
         {
-
         }
 
         public ContractRequestMessageMapEntity(ContractRequestEntity contractRequest, MessageEntity message)

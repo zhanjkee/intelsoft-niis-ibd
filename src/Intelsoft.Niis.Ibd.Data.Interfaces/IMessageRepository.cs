@@ -5,6 +5,5 @@ namespace Intelsoft.Niis.Ibd.Data.Interfaces
 {
     public interface IMessageRepository : IRepository<MessageEntity>
     {
-        
     }
 }

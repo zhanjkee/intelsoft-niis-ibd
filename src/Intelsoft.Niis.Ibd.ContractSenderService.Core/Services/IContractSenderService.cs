@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Intelsoft.Niis.Ibd.Entities;
+using Intelsoft.Niis.Ibd.ContractSenderService.Domain.Contract;
 using JetBrains.Annotations;
 
 namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Services
@@ -10,11 +10,11 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Services
         ///     Получить список доступных договоров для отправки в ИБД.
         /// </summary>
         [ItemCanBeNull]
-        IEnumerable<ContractRequestEntity> GetAvailableContracts();
+        IEnumerable<ContractData> GetAvailableContracts();
 
         /// <summary>
         ///     Отправить договор в ИБД.
         /// </summary>
-        void Send([NotNull] ContractRequestEntity contract);
+        void Send([NotNull] ContractData contract);
     }
 }

@@ -9,14 +9,13 @@ namespace Intelsoft.Niis.Ibd.Entities
     {
         protected IbdResponseEntity()
         {
-
         }
 
         public IbdResponseEntity(
-            string responseId, 
-            DateTime? responseDate, 
-            string errorCode, 
-            string dataProcessingText, 
+            string responseId,
+            DateTime? responseDate,
+            string errorCode,
+            string dataProcessingText,
             string requestId)
         {
             ResponseId = responseId;

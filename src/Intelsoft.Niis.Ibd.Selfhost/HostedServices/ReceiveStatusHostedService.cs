@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using Intelsoft.Niis.Ibd.Configuration;
+using Intelsoft.Niis.Ibd.ReceiveStatusService.Configuration;
 using Intelsoft.Niis.Ibd.ReceiveStatusService.Contract;
 using Serilog;
 using Topshelf;
@@ -10,14 +10,17 @@ namespace Intelsoft.Niis.Ibd.Selfhost.HostedServices
 {
     public class ReceiveStatusHostedService : ServiceControl
     {
-        private readonly ISendMessageResponseService _sendMessageResponseService;
-        private readonly NiisIbdSettings _configuration;
+        private readonly ReceiveStatusServiceConfiguration _configuration;
         private readonly ILogger _logger;
+        private readonly IReceiveStatusService _receiveStatusService;
+
         private ServiceHost _selfHost;
 
-        public ReceiveStatusHostedService(ISendMessageResponseService sendMessageResponseService, NiisIbdSettings configuration, ILogger logger)
+        public ReceiveStatusHostedService(IReceiveStatusService receiveStatusService,
+            ReceiveStatusServiceConfiguration configuration, ILogger logger)
         {
-            _sendMessageResponseService = sendMessageResponseService ?? throw new ArgumentNullException(nameof(sendMessageResponseService));
+            _receiveStatusService =
+                receiveStatusService ?? throw new ArgumentNullException(nameof(receiveStatusService));
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -27,26 +30,26 @@ namespace Intelsoft.Niis.Ibd.Selfhost.HostedServices
             try
             {
                 // Create a URI to serve as the base address.
-                var baseAddress = new Uri(_configuration.ReceiveStatusServiceWebAddress);
+                var baseAddress = new Uri(_configuration.WebAddress);
 
                 // Create a ServiceHost instance.
-                _selfHost = new ServiceHost(_sendMessageResponseService, baseAddress);
+                _selfHost = new ServiceHost(_receiveStatusService, baseAddress);
 
                 // Add a service endpoint.
                 _selfHost.AddServiceEndpoint(
-                    implementedContract: typeof(ISendMessageResponseService),
-                    binding: new BasicHttpBinding(),
-                    address: "");
+                    typeof(IReceiveStatusService),
+                    new BasicHttpBinding(),
+                    "");
 
                 // Enable metadata exchange.
-                var smb = new ServiceMetadataBehavior { HttpGetEnabled = true, HttpsGetEnabled = true };
+                var smb = new ServiceMetadataBehavior {HttpGetEnabled = true, HttpsGetEnabled = true};
                 _selfHost.Description.Behaviors.Add(smb);
 
                 // Start the wcf service.
                 _selfHost.Open();
 
                 _logger.Information("The receive status service is running.");
-                _logger.Information($"The receive service is available at {_configuration.ReceiveStatusServiceWebAddress}");
+                _logger.Information($"The receive service is available at {_configuration.WebAddress}");
             }
             catch (Exception e)
             {

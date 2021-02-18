@@ -10,36 +10,30 @@ namespace Intelsoft.Niis.Ibd.Selfhost.Jobs
 {
     public class ContractSenderJob : IJob
     {
-        private static readonly object _syncObject = new object();
+        private static readonly object Locker = new object();
 
         private readonly IContractSenderService _contractSenderService;
         private readonly ILogger _logger;
 
         public ContractSenderJob()
         {
-            // TODO: Отчерафить. Реализовать внедрение через конструктор.
-            var contractSenderService = Global.Instance.Container.Resolve<IContractSenderService>();
-            _contractSenderService =
-                contractSenderService ?? throw new ArgumentNullException(nameof(contractSenderService));
-
-            _logger = Global.Instance.Container.Resolve<ILogger>();
+            // NOTE: Резолвим зависимости. По умолчанию Job-ы не подерживают DI.
+            _contractSenderService = Autofac.Instance.Container.Resolve<IContractSenderService>();
+            _logger = Autofac.Instance.Container.Resolve<ILogger>();
         }
 
         public void Execute(IJobExecutionContext context)
         {
             try
             {
-                Monitor.Enter(_syncObject);
+                Monitor.Enter(Locker);
 
-                var contracts = _contractSenderService.GetAvailableContracts()?.ToList();
-
-                if (contracts == null || !contracts.Any())
+                var availableContracts = _contractSenderService.GetAvailableContracts();
+                if (availableContracts == null)
                     return;
 
-                foreach (var contract in contracts)
-                {
-                    _contractSenderService.Send(contract);
-                }
+                var contractRequests = availableContracts.ToList();
+                foreach (var contractRequest in contractRequests) _contractSenderService.Send(contractRequest);
             }
             catch (Exception e)
             {
@@ -47,7 +41,7 @@ namespace Intelsoft.Niis.Ibd.Selfhost.Jobs
             }
             finally
             {
-                Monitor.Exit(_syncObject);
+                Monitor.Exit(Locker);
             }
         }
     }

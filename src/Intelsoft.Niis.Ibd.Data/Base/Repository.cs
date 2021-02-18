@@ -18,12 +18,11 @@ namespace Intelsoft.Niis.Ibd.Data.Base
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        protected DbSet<T> DbSet
+        protected DbSet<T> DbSet => _context.Set<T>();
+
+        public T GetById(object id)
         {
-            get
-            {
-                return _context.Set<T>();
-            }
+            return DbSet.Find(id);
         }
 
         public IQueryable<T> GetAll()
