@@ -33,16 +33,13 @@ namespace Intelsoft.Niis.Ibd.Infrastructure.Logging
 
             var todayDate = DateTime.UtcNow.ToString("yyyyMMdd");
 
-            foreach (var enumValue in Enum.GetValues(typeof(LogEventLevel)))
-            {
-                if ((LogEventLevel) enumValue == LogEventLevel.Debug) continue;
-
-                loggerConfiguration.WriteTo.File(Path.Combine(logDirectory,
-                        $"{todayDate}_{enumValue.ToString().ToLower()}.txt"),
-                    (LogEventLevel) enumValue,
-                    rollOnFileSizeLimit: true,
-                    fileSizeLimitBytes: configuration.FileSizeLimitMBytes * 1024 * 1024);
-            }
+            loggerConfiguration.WriteTo.Map(
+                    evt => evt.Level,
+                    (level, wt) => wt.File(
+                        Path.Combine(logDirectory, $"{todayDate}_{level.ToString().ToLower()}.txt"),
+                        level,
+                        rollOnFileSizeLimit: true,
+                        fileSizeLimitBytes: configuration.FileSizeLimitMBytes * 1024 * 1024));
 
             loggerConfiguration.WriteTo.Console(theme: AnsiConsoleTheme.Code);
 
