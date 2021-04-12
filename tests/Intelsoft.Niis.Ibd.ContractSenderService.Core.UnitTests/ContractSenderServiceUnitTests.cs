@@ -117,7 +117,7 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.UnitTests
                     NameKz = "TEST",
                     NameRu = "TEST"
                 },
-                Id = 1,
+                Id = Guid.NewGuid(),
                 CreatedDate = DateTime.Now,
                 Name = "TEST",
                 UpdatedDate = DateTime.Now,

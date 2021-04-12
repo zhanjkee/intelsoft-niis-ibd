@@ -13,9 +13,6 @@ namespace Intelsoft.Niis.Ibd.Data
         }
 
         public DbSet<ContractRequestEntity> ContractRequests { get; set; }
-        public DbSet<ContractTypeEntity> ContractTypes { get; set; }
-        public DbSet<PropertyEntity> Properties { get; set; }
-        public DbSet<ContractRequestDispatchStatusEntity> ContractRequestDispatchStatuses { get; set; }
         public DbSet<MessageEntity> Messages { get; set; }
         public DbSet<IbdResponseEntity> IbdResponses { get; set; }
         public DbSet<ContractRequestMessageMapEntity> ContractRequestMessageMap { get; set; }

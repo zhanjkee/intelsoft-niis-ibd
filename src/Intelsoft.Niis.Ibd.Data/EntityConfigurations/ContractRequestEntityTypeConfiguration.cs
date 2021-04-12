@@ -10,14 +10,6 @@ namespace Intelsoft.Niis.Ibd.Data.EntityConfigurations
         {
             builder.HasKey(x => x.Id);
 
-            builder.HasOne(x => x.Property)
-                .WithOne()
-                .HasForeignKey<ContractRequestEntity>(x => x.PropertyId);
-
-            builder.HasOne(x => x.Type)
-                .WithOne()
-                .HasForeignKey<ContractRequestEntity>(x => x.TypeId);
-
             builder.Property(x => x.RowVersion).IsRowVersion().IsRequired();
         }
     }

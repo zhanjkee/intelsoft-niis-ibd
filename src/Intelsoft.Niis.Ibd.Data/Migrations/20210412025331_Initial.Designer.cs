@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Intelsoft.Niis.Ibd.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210217182655_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210412025331_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,39 +21,6 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Intelsoft.Niis.Ibd.Entities.ContractRequestDispatchStatusEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ContractRequestId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Dispatched")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("DispatchingDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("RowCreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContractRequestId")
-                        .IsUnique();
-
-                    b.ToTable("ContractRequestDispatchStatuses");
-                });
-
             modelBuilder.Entity("Intelsoft.Niis.Ibd.Entities.ContractRequestEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -61,32 +28,14 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AssigneeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AssigneeXin")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ContractId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ContractNumber")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Dispatched")
+                        .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ContractRegistrationDate")
+                    b.Property<DateTime?>("DispatchingDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ContractValidityDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DispatchStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PropertyId")
                         .HasColumnType("int");
@@ -100,53 +49,9 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Xin")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("DispatchStatusId");
-
-                    b.HasIndex("PropertyId")
-                        .IsUnique();
-
-                    b.HasIndex("TypeId")
-                        .IsUnique();
 
                     b.ToTable("ContractRequests");
-                });
-
-            modelBuilder.Entity("Intelsoft.Niis.Ibd.Entities.ContractTypeEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("NameKz")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameRu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RowCreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ContractTypes");
                 });
 
             modelBuilder.Entity("Intelsoft.Niis.Ibd.Entities.IbdResponseEntity", b =>
@@ -285,73 +190,6 @@ namespace Intelsoft.Niis.Ibd.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Messages");
-                });
-
-            modelBuilder.Entity("Intelsoft.Niis.Ibd.Entities.PropertyEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IntellectualPropertyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProtectionNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RegistrationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("RowCreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ValidityDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Properties");
-                });
-
-            modelBuilder.Entity("Intelsoft.Niis.Ibd.Entities.ContractRequestDispatchStatusEntity", b =>
-                {
-                    b.HasOne("Intelsoft.Niis.Ibd.Entities.ContractRequestEntity", "ContractRequest")
-                        .WithOne()
-                        .HasForeignKey("Intelsoft.Niis.Ibd.Entities.ContractRequestDispatchStatusEntity", "ContractRequestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Intelsoft.Niis.Ibd.Entities.ContractRequestEntity", b =>
-                {
-                    b.HasOne("Intelsoft.Niis.Ibd.Entities.ContractRequestDispatchStatusEntity", "DispatchStatus")
-                        .WithMany()
-                        .HasForeignKey("DispatchStatusId");
-
-                    b.HasOne("Intelsoft.Niis.Ibd.Entities.PropertyEntity", "Property")
-                        .WithOne()
-                        .HasForeignKey("Intelsoft.Niis.Ibd.Entities.ContractRequestEntity", "PropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Intelsoft.Niis.Ibd.Entities.ContractTypeEntity", "Type")
-                        .WithOne()
-                        .HasForeignKey("Intelsoft.Niis.Ibd.Entities.ContractRequestEntity", "TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Intelsoft.Niis.Ibd.Entities.Maps.ContractRequestMessageMapEntity", b =>

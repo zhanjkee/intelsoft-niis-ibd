@@ -9,7 +9,7 @@ namespace Intelsoft.Niis.Ibd.Data.Interfaces
         IIbdResponseMessageMapRepository IbdResponseMessageMapRepository { get; }
         IContractRepository ContractRepository { get; }
         IMessageRepository MessageRepository { get; }
-
+        INiisContractRepository NiisContractRepository { get; }
         void SaveChanges();
     }
 }

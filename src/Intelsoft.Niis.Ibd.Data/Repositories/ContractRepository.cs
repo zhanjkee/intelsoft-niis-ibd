@@ -3,7 +3,6 @@ using Intelsoft.Niis.Ibd.Data.Base;
 using Intelsoft.Niis.Ibd.Data.Interfaces;
 using Intelsoft.Niis.Ibd.Entities;
 using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;
 
 namespace Intelsoft.Niis.Ibd.Data.Repositories
 {
@@ -16,13 +15,19 @@ namespace Intelsoft.Niis.Ibd.Data.Repositories
         public IQueryable<ContractRequestEntity> GetAvailableContracts()
         {
             return GetAll()
-                .Include(x => x.DispatchStatus)
-                .Where(x => x.DispatchStatus.Dispatched == false);
+                .Where(x => x.Dispatched == false);
         }
 
         public void Dispatched(ContractRequestEntity entity)
         {
             entity.Dispatch();
+        }
+
+        public ContractRequestEntity GetByIds(int contractId, int propertyId)
+        {
+            return GetAll()
+                .Where(x => x.Dispatched == false)
+                .FirstOrDefault(x => x.ContractId == contractId && x.PropertyId == propertyId);
         }
     }
 }

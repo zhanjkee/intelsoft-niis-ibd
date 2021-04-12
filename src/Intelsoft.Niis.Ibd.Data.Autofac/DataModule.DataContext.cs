@@ -39,6 +39,19 @@ namespace Intelsoft.Niis.Ibd.Data.Autofac
                 })
                 .InstancePerDependency();
 
+            // Register data context.
+            builder.Register(provider =>
+            {
+                var configuration = provider.Resolve<ConnectionStringsConfiguration>();
+
+                var options = new DbContextOptionsBuilder<NiisDbContext>()
+                    .UseSqlServer(configuration.NiisConnectionString)
+                    .Options;
+
+                return new NiisDbContext(options);
+            })
+                .InstancePerDependency();
+
             // Register data context factory.
             builder.RegisterType<DataContextFactory>().As<IDataContextFactory>()
                 .InstancePerDependency();

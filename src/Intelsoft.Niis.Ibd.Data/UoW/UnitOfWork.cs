@@ -10,16 +10,18 @@ namespace Intelsoft.Niis.Ibd.Data.UoW
 {
     public class UnitOfWork : IUnitOfWork
     {
+        private readonly NiisDbContext _niisDbContext;
         private readonly ConnectionStringsConfiguration _configuration;
         private readonly IDataContext _context;
         private readonly RetryPolicy _soapRetryPolicy;
 
         public UnitOfWork([NotNull] IDataContextFactory dataContextFactory,
+            [NotNull] NiisDbContext niisDbContext,
             [NotNull] ConnectionStringsConfiguration configuration)
         {
             if (dataContextFactory == null)
                 throw new ArgumentNullException(nameof(dataContextFactory));
-
+            _niisDbContext = niisDbContext ?? throw new ArgumentNullException(nameof(niisDbContext));
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
             _context = dataContextFactory.Create();
@@ -33,6 +35,7 @@ namespace Intelsoft.Niis.Ibd.Data.UoW
             IbdResponseRepository = new IbdResponseRepository(_context);
             ContractRequestMessageMapRepository = new ContractRequestMessageMapRepository(_context);
             IbdResponseMessageMapRepository = new IbdResponseMessageMapRepository(_context);
+            NiisContractRepository = new NiisContractRepository(_niisDbContext);
         }
 
         public IIbdResponseRepository IbdResponseRepository { get; }
@@ -40,6 +43,7 @@ namespace Intelsoft.Niis.Ibd.Data.UoW
         public IIbdResponseMessageMapRepository IbdResponseMessageMapRepository { get; }
         public IContractRepository ContractRepository { get; }
         public IMessageRepository MessageRepository { get; }
+        public INiisContractRepository NiisContractRepository { get; }
 
         public void SaveChanges()
         {

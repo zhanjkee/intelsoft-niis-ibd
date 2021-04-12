@@ -14,7 +14,6 @@ using Intelsoft.Niis.Ibd.Entities.Enums;
 using Intelsoft.Niis.Ibd.Entities.Maps;
 using Intelsoft.Niis.Ibd.Infrastructure.SoapExecutor;
 using Intelsoft.Niis.Ibd.Shared.Extensions;
-using Microsoft.EntityFrameworkCore;
 using Polly;
 using Polly.Retry;
 using Serilog;
@@ -48,12 +47,11 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Services
         /// <inheritdoc cref="IContractSenderService.GetAvailableContracts" />
         public IEnumerable<ContractData> GetAvailableContracts()
         {
-            return _unitOfWork?.ContractRepository?.GetAvailableContracts()
-                ?.Include(x => x.DispatchStatus)
-                ?.Include(x => x.Type)
-                ?.Include(x => x.Property)
-                ?.Select(x => x.ToDomain())
+            var availableContractIds = _unitOfWork?.ContractRepository?.GetAvailableContracts()
+                .Select(x => x.ContractId)
                 .ToList();
+
+            return _unitOfWork.NiisContractRepository.GetContractEntities(availableContractIds)?.Select(x=>x?.ToDomain())?.ToList();
         }
 
         /// <inheritdoc cref="IContractSenderService.Send" />
@@ -68,9 +66,12 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Services
             if (contract.Property == null)
                 throw new ContractException(string.Format(Resources.CannotBeNull, nameof(contract.Property)));
 
-            var contractEntity = _unitOfWork.ContractRepository.GetById(contract.Id);
+            var contractEntity = _unitOfWork.ContractRepository.GetByIds(contract.ContractId, contract.PropertyId);
             if (contractEntity == null)
-                throw new ContractException(string.Format(Resources.NotFoundById, nameof(contractEntity), contract.Id));
+            {
+                _logger.Warning(string.Format(Resources.NotFoundById, nameof(contractEntity), contract.ContractId));
+                return;
+            }
 
             var messageId = Guid.NewGuid().ToString();
             var messageDate = DateTime.Now;
@@ -137,7 +138,7 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Services
             // Парсим correlationId из полученного ответа от ШЭП-а.
             var responseDocument = XDocument.Parse(response.Value);
             var responseElement = responseDocument.Descendants().FirstOrDefault(x => x.Name.LocalName == "response");
-            var correlationId = (string) responseElement?.Element("correlationId") ?? string.Empty;
+            var correlationId = (string)responseElement?.Element("correlationId") ?? string.Empty;
 
             // Сохраняем полученный ответ.
             var responseMessage = new MessageEntity(

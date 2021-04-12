@@ -57,7 +57,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.Configur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.ContractSenderService.Core.UnitTests", "tests\Intelsoft.Niis.Ibd.ContractSenderService.Core.UnitTests\Intelsoft.Niis.Ibd.ContractSenderService.Core.UnitTests.csproj", "{314096D5-D3AB-4391-BE1D-2E233BF87C28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation.UnitTests", "tests\Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation.UnitTests\Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation.UnitTests.csproj", "{154E3B90-77AF-4DD6-B5BB-2930B679B92A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation.UnitTests", "tests\Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation.UnitTests\Intelsoft.Niis.Ibd.ReceiveStatusService.Implementation.UnitTests.csproj", "{154E3B90-77AF-4DD6-B5BB-2930B679B92A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intelsoft.Niis.Ibd.Data.UnitTests", "tests\Intelsoft.Niis.Ibd.Data.UnitTests\Intelsoft.Niis.Ibd.Data.UnitTests.csproj", "{E80A4DA4-5270-4B27-868F-676E2CFB1D65}"
 EndProject

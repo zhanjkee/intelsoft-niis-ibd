@@ -14,7 +14,9 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Domain.Contract
     {
         private DateTime? _contractValidityDate;
 
-        [XmlIgnore] public int Id { get; set; }
+        [XmlIgnore] public long Id { get; set; }
+        [XmlIgnore] public int ContractId { get; set; }
+        [XmlIgnore] public int PropertyId { get; set; }
 
         /// <summary>
         /// </summary>

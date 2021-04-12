@@ -12,6 +12,7 @@ namespace Intelsoft.Niis.Ibd.Data.Configuration
         public const string SectionName = "connectionStringSettings";
 
         private const string ConnectionStringKey = "connectionString";
+        private const string NiisConnectionStringKey = "niisConnectionString";
         private const string UseRetryPolicyKey = "useRetryPolicy";
         private const string MaxRetryAttemptsKey = "maxRetryAttempts";
         private const string PauseBetweenFailuresInMinutesKey = "pauseBetweenFailuresInMinutes";
@@ -28,6 +29,20 @@ namespace Intelsoft.Niis.Ibd.Data.Configuration
             get => this[ConnectionStringKey].ToString();
             set => this[ConnectionStringKey] = value;
         }
+
+        /// <summary>
+        ///     Строка подключения к базе данных.
+        /// </summary>
+        [ConfigurationProperty(NiisConnectionStringKey,
+            DefaultValue = "Server=(local);Database=dbNiis;Trusted_Connection=True;",
+            IsRequired = true)]
+        [SqlConnectionStringValidator]
+        public string NiisConnectionString
+        {
+            get => this[NiisConnectionStringKey].ToString();
+            set => this[NiisConnectionStringKey] = value;
+        }
+
 
         /// <summary>
         ///     Флаг определяющий, использовать ли политику повтора.

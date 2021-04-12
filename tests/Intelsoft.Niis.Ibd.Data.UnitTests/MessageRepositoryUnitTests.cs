@@ -6,6 +6,7 @@ using Intelsoft.Niis.Ibd.Data.Tests;
 using Intelsoft.Niis.Ibd.Data.UoW;
 using Intelsoft.Niis.Ibd.Entities;
 using Intelsoft.Niis.Ibd.Entities.Enums;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace Intelsoft.Niis.Ibd.Data.UnitTests
@@ -16,7 +17,12 @@ namespace Intelsoft.Niis.Ibd.Data.UnitTests
 
         public MessageRepositoryUnitTests()
         {
-            _unitOfWork = new UnitOfWork(new InMemoryDataContextFactory(), new ConnectionStringsConfiguration
+            var niisDbContext = new NiisDbContext(
+                new DbContextOptionsBuilder<NiisDbContext>()
+                .UseInMemoryDatabase("dbNiis")
+                .Options);
+
+            _unitOfWork = new UnitOfWork(new InMemoryDataContextFactory(), niisDbContext,  new ConnectionStringsConfiguration
             {
                 UseRetryPolicy = false,
                 ConnectionString = "",
