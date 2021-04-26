@@ -46,11 +46,13 @@ namespace Intelsoft.Niis.Ibd.Infrastructure.SoapExecutor
 
         private static HttpWebRequest CreateWebRequest(string uri, string action, string method)
         {
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
             var webRequest = (HttpWebRequest) WebRequest.Create(uri);
             webRequest.Headers.Add("SOAPAction", action);
             webRequest.ContentType = "text/xml;charset=\"utf-8\"";
             webRequest.Accept = "text/xml";
             webRequest.Method = method;
+            webRequest.KeepAlive = false;
             return webRequest;
         }
 
