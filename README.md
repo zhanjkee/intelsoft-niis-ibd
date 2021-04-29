@@ -46,3 +46,11 @@
 **Intelsoft.Niis.Ibd.Shared** – Разделяемая сборка, содержит общие классы,  методы расширения. Напимер, XML-сериализация.
 
 **Intelsoft.Niis.Ibd.Validation** - Содержит пользовательские атрибуты валидации.
+
+
+**Установка сервиса**
+
+Корень композиции Intelsoft.Niis.Ibd.Selfhost поддерживает комманды.
+Основные команды install, uninstall, start, stop. Например, Intelsoft.Niis.Ibd.Selfhost install.
+
+Подробности о поддерживаемых командах можно узнать тут http://docs.topshelf-project.com/en/latest/overview/commandline.html
