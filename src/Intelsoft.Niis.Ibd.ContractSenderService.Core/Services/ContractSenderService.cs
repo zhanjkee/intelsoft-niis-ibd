@@ -47,11 +47,11 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Services
         /// <inheritdoc cref="IContractSenderService.GetAvailableContracts" />
         public IEnumerable<ContractData> GetAvailableContracts()
         {
-            var availableContractIds = _unitOfWork?.ContractRepository?.GetAvailableContracts()
+            var availableContractIds = _unitOfWork.ContractRepository?.GetAvailableContracts()
                 .Select(x => x.ContractId)
                 .ToList();
 
-            return _unitOfWork.NiisContractRepository.GetContractEntities(availableContractIds)?.Select(x=>x?.ToDomain())?.ToList();
+            return _unitOfWork.NiisContractRepository.GetContractEntities(availableContractIds)?.Select(x=>x?.ToDomain()).ToList();
         }
 
         /// <inheritdoc cref="IContractSenderService.Send" />
@@ -94,7 +94,6 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Core.Services
             try
             {
                 // Отправляем запрос в ИБД.
-
                 var soapRequest = new SoapExecutionRequest(
                     _configuration.ShepWebAddress,
                     Constants.EgovGateway.Actions.SendMessage,

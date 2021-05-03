@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using Intelsoft.Niis.Ibd.Configuration.Base;
 
 namespace Intelsoft.Niis.Ibd.Infrastructure.Serilog.Configuration
@@ -10,28 +11,16 @@ namespace Intelsoft.Niis.Ibd.Infrastructure.Serilog.Configuration
         /// </summary>
         public const string SectionName = "serilogSettings";
 
-        private const string LogPathKey = "logPath";
-        private const string FileSizeLimitMBytesKey = "fileSizeLimitMBytes";
-
+        private const string MsSqlConnectionStringKey = "mssqlConnectionString";
+     
         /// <summary>
-        ///     Путь для хранения логов.
+        ///     Строка подключения к бд.
         /// </summary>
-        [ConfigurationProperty(LogPathKey, DefaultValue = "..\\logs", IsRequired = true)]
-        public string LogPath
+        [ConfigurationProperty(MsSqlConnectionStringKey, DefaultValue = "", IsRequired = true)]
+        public string MsSqlConnectionString
         {
-            get => this[LogPathKey].ToString();
-            set => this[LogPathKey] = value;
-        }
-
-        /// <summary>
-        ///     Максимальный порог размера файла, после достижения которого будет создан
-        ///     новый файл для продолжения записи.
-        /// </summary>
-        [ConfigurationProperty(FileSizeLimitMBytesKey, DefaultValue = 1024, IsRequired = true)]
-        public int FileSizeLimitMBytes
-        {
-            get => (int) this[FileSizeLimitMBytesKey];
-            set => this[FileSizeLimitMBytesKey] = value;
+            get => this[MsSqlConnectionStringKey].ToString();
+            set => this[MsSqlConnectionStringKey] = value;
         }
     }
 }

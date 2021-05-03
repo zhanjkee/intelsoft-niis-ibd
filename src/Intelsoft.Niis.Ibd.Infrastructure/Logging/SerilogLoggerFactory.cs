@@ -2,7 +2,7 @@
 using System.IO;
 using Intelsoft.Niis.Ibd.Infrastructure.Serilog.Configuration;
 using Serilog;
-using Serilog.Events;
+using Serilog.Sinks.MSSqlServer;
 using Serilog.Sinks.SystemConsole.Themes;
 
 namespace Intelsoft.Niis.Ibd.Infrastructure.Logging
@@ -26,20 +26,22 @@ namespace Intelsoft.Niis.Ibd.Infrastructure.Logging
             var loggerConfiguration = new LoggerConfiguration()
                 .Enrich.FromLogContext();
 
-            var currentDirectory = Directory.GetCurrentDirectory();
+            var logDB = configuration.MsSqlConnectionString;
+            var sinkOpts = new MSSqlServerSinkOptions
+            {
+                TableName = "Logs",
+                AutoCreateSqlTable = true
+            };
+            var columnOpts = new ColumnOptions();
+            columnOpts.Store.Add(StandardColumn.LogEvent);
+            columnOpts.LogEvent.DataLength = 2048;
+            columnOpts.TimeStamp.NonClusteredIndex = true;
 
-            var logDirectory = Path.Combine(currentDirectory, configuration.LogPath);
-            if (!Directory.Exists(logDirectory)) Directory.CreateDirectory(logDirectory);
-
-            var todayDate = DateTime.UtcNow.ToString("yyyyMMdd");
-
-            loggerConfiguration.WriteTo.Map(
-                    evt => evt.Level,
-                    (level, wt) => wt.File(
-                        Path.Combine(logDirectory, $"{todayDate}_{level.ToString().ToLower()}.txt"),
-                        level,
-                        rollOnFileSizeLimit: true,
-                        fileSizeLimitBytes: configuration.FileSizeLimitMBytes * 1024 * 1024));
+            loggerConfiguration.WriteTo
+                .MSSqlServer(
+                    connectionString: logDB,
+                    sinkOptions: sinkOpts,
+                    columnOptions: columnOpts);
 
             loggerConfiguration.WriteTo.Console(theme: AnsiConsoleTheme.Code);
 

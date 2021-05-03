@@ -35,27 +35,27 @@ namespace Intelsoft.Niis.Ibd.ContractSenderService.Domain.Contract
 
         /// <summary>
         /// </summary>
-        [XmlElement]
+        [XmlElement(IsNullable = true)]
         public string AssigneeXin { get; set; }
 
         /// <summary>
         /// </summary>
-        [XmlElement]
+        [XmlElement(IsNullable = true)]
         public string AssigneeName { get; set; }
 
         /// <summary>
         /// </summary>
-        [XmlElement]
+        [XmlElement(IsNullable = true)]
         public string ContractNumber { get; set; }
 
         /// <summary>
         /// </summary>
-        [XmlElement(DataType = "date")]
+        [XmlElement(DataType = "date", IsNullable = true)]
         public DateTime? ContractRegistrationDate { get; set; }
 
         /// <summary>
         /// </summary>
-        [XmlElement]
+        [XmlElement(IsNullable = true)]
         public ContractReference ContractType { get; set; }
 
         /// <summary>
