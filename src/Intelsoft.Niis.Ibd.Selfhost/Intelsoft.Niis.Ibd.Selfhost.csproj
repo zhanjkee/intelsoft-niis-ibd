@@ -26,6 +26,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Configuration\Intelsoft.Niis.Ibd.Configuration.csproj" />
 		<ProjectReference Include="..\Intelsoft.Niis.Ibd.ContractSenderService.Autofac\Intelsoft.Niis.Ibd.ContractSenderService.Autofac.csproj" />
+		<ProjectReference Include="..\Intelsoft.Niis.Ibd.ContractSenderService.Core\Intelsoft.Niis.Ibd.ContractSenderService.Core.csproj" />
 		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Data.Autofac\Intelsoft.Niis.Ibd.Data.Autofac.csproj" />
 		<ProjectReference Include="..\Intelsoft.Niis.Ibd.Infrastructure.Autofac\Intelsoft.Niis.Ibd.Infrastructure.Autofac.csproj" />
 		<ProjectReference Include="..\Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac\Intelsoft.Niis.Ibd.ReceiveStatusService.Autofac.csproj" />

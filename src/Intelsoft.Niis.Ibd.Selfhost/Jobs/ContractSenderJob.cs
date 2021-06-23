@@ -33,7 +33,17 @@ namespace Intelsoft.Niis.Ibd.Selfhost.Jobs
                     return;
 
                 var contractRequests = availableContracts.ToList();
-                foreach (var contractRequest in contractRequests) _contractSenderService.Send(contractRequest);
+                foreach (var contractRequest in contractRequests)
+                {
+                    try
+                    {
+                        _contractSenderService.Send(contractRequest);
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.Error(e, nameof(IContractSenderService.Send));
+                    }
+                }
             }
             catch (Exception e)
             {
